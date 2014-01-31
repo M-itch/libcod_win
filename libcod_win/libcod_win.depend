@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1391123203 source:c:\users\mitch\documents\codeblocks\libcod_win\main.cpp
+	"main.h"
+	<stdio.h>
+	"include/functions.h"
+	"include/cracking.h"
+	"include/gsc.h"
+
+1387490054 c:\users\mitch\documents\codeblocks\libcod_win\main.h
+	<windows.h>
+
+1391125306 c:\users\mitch\documents\codeblocks\libcod_win\include\functions.h
+
+1387745629 source:c:\users\mitch\documents\codeblocks\libcod_win\src\libcod.cpp
+	"../include/libcod.h"
+
+1387746193 c:\users\mitch\documents\codeblocks\libcod_win\include\libcod.h
+
+1391122798 c:\users\mitch\documents\codeblocks\libcod_win\include\cracking.h
+	<string.h>
+
+1391122992 c:\users\mitch\documents\codeblocks\libcod_win\include\gsc.h
+
+1391124061 source:c:\users\mitch\documents\codeblocks\libcod_win\src\cracking.cpp
+	"../include/cracking.h"
+	<windows.h>
+
+1391124189 source:c:\users\mitch\documents\codeblocks\libcod_win\src\gsc.cpp
+	"../include/gsc.h"
+	"../include/functions.h"
+	<string.h>
+

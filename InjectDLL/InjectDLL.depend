@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1387489003 source:c:\users\mitch\documents\codeblocks\projects\injectdll\main.cpp
+	<stdio.h>
+	<windows.h>
+	<tlhelp32.h>
+
+1388513111 source:c:\users\mitch\documents\codeblocks\injectdll\main.cpp
+	<windows.h>
+	<tlhelp32.h>
+	<windows.h>
+	<iostream>
+	<tlhelp32.h>
+
+1388344331 source:c:\users\mitch\documents\codeblocks\injectdll\injectdll.rc
+	<winuser.h>
+
