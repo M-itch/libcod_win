@@ -30,3 +30,19 @@
 	"../include/functions.h"
 	<string.h>
 
+1391171466 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\cracking.cpp
+	"../include/cracking.h"
+	<windows.h>
+
+1391122798 c:\users\mitch\documents\github\libcod_win\libcod_win\include\cracking.h
+	<string.h>
+
+1391124189 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc.cpp
+	"../include/gsc.h"
+	"../include/functions.h"
+	<string.h>
+
+1391171387 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc.h
+
+1391172626 c:\users\mitch\documents\github\libcod_win\libcod_win\include\functions.h
+

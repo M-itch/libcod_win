@@ -34,8 +34,6 @@ void cracking_hook_call(int from, int to)
 	VirtualProtect((void*)from, 5, tmp, &tmp);
 }
 
-
-
 int singleHexToNumber(char hexchar)
 {
 	switch (hexchar)
@@ -65,6 +63,7 @@ int singleHexToNumber(char hexchar)
 	}
 	return -1;
 }
+
 int hexToBuffer(char *hex, char *buffer, int bufferLen)
 {
 	int len, neededBytes, i, padding, first, pos, leftPart, rightPart;
@@ -112,8 +111,6 @@ int hexToBuffer(char *hex, char *buffer, int bufferLen)
 	}
 	return neededBytes;
 }
-
-
 
 int cracking_write_hex(int address, char *hex)
 {

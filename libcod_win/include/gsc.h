@@ -7,7 +7,7 @@
 #define COD2_1_3 213
 #define COD4_1_7 417
 
-#if COD2_VERSION == COD2_VERSION_1_2 || COD2_VERSION == COD2_VERSION_1_3 || COD_VERSION == COD2_1_0
+#if COD_VERSION == COD2_1_2 || COD_VERSION == COD2_1_3 || COD_VERSION == COD2_1_0
 	#define STACK_UNDEFINED 0
 	#define STACK_OBJECT 1
 	#define STACK_STRING 2
@@ -88,7 +88,7 @@
 	#define STACK_REMOVED_THREAD 23
 #else
 	// NO ERROR, because those are only available if code is compiled version-dependent!
-	//#warning NO STACK TYPES
+	#warning NO STACK TYPES
 #endif
 
 typedef struct
