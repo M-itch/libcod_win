@@ -1,6 +1,9 @@
 #ifndef GSC_H
 #define GSC_H
 
+#include "gsc_player.h"
+#include "config.h"
+
 #define COD1_1_5 115
 #define COD2_1_0 210
 #define COD2_1_2 212

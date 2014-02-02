@@ -45,13 +45,16 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Unit filename="include/config.h" />
 		<Unit filename="include/cracking.h" />
 		<Unit filename="include/functions.h" />
 		<Unit filename="include/gsc.h" />
+		<Unit filename="include/gsc_player.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
 		<Unit filename="src/cracking.cpp" />
 		<Unit filename="src/gsc.cpp" />
+		<Unit filename="src/gsc_player.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

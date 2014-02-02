@@ -37,12 +37,28 @@
 1391122798 c:\users\mitch\documents\github\libcod_win\libcod_win\include\cracking.h
 	<string.h>
 
-1391124189 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc.cpp
+1391361160 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc.cpp
 	"../include/gsc.h"
 	"../include/functions.h"
 	<string.h>
 
-1391171387 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc.h
+1391361172 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc.h
+	"gsc_player.h"
+	"config.h"
 
 1391172626 c:\users\mitch\documents\github\libcod_win\libcod_win\include\functions.h
+
+1391172671 source:c:\users\mitch\documents\github\libcod_win\libcod_win\main.cpp
+	"main.h"
+	<stdio.h>
+	"include/functions.h"
+	"include/cracking.h"
+	"include/gsc.h"
+
+1387490054 c:\users\mitch\documents\github\libcod_win\libcod_win\main.h
+	<windows.h>
+
+1391294325 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc_player.h
+
+1391361014 c:\users\mitch\documents\github\libcod_win\libcod_win\include\config.h
 
