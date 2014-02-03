@@ -189,15 +189,6 @@ int stackPushVector(float *ret) // as in vectornormalize
 
 int stackPushFloat(float ret) // as in distance
 {
-    /* not working
-    aStackElement *scriptStack;
-    scriptStack = *(aStackElement**)getStack();
-    stackNew();
-    scriptStack = *(aStackElement**)getStack();
-    scriptStack->type = STACK_FLOAT;
-    *(float *)&(scriptStack->offsetData) = ret;
-    return 123;*/
-
     int (*signature)(float);
 
     #if COD_VERSION == COD2_1_3
@@ -212,15 +203,19 @@ int stackPushFloat(float ret) // as in distance
 
 int stackPushString(char *toPush) // as in getcvar()
 {
-    /*aStackElement *scriptStack;
-    scriptStack = *(aStackElement**)getStack();
     stackNew();
-    scriptStack = *(aStackElement**)getStack();
-    scriptStack->type = STACK_STRING;
-    *(char *)&(scriptStack->offsetData) = *toPush;
-    return 123;*/
 
-    int (*signature)(char *, int, int);
+    /*void (*sub_4324C0)(signed int, const char *, ...);
+    *((int *)(&sub_4324C0)) = 0x04324C0;
+
+    if ( *(int*)0x0F4B910 == *(int *)0x0F4B904 )
+        sub_4324C0(1, (char *)(int *)0x05B01D0);*/
+
+    *(int *)0xF4B910 += 8;
+    ++*(int *)0x0F4B918;
+    *(int *)((*(int*)0x0F4B910) + 4) = 2;
+
+    int (*signature)(const void *, unsigned int8_t, unsigned int);
 
     #if COD_VERSION == COD2_1_3
         *((int *)(&signature)) = 0x0477500;
@@ -228,8 +223,10 @@ int stackPushString(char *toPush) // as in getcvar()
         #warning int stackPushString(char *toPush) *((int *)(&signature)) = NULL;
         *((int *)(&signature)) = (int)NULL;
     #endif
-    stackNew();
-    return signature(toPush, 0, strlen(toPush)+1);
+
+    unsigned short int result = signature(toPush, 0, strlen(toPush)+1);
+    *(int *)(*(int *)0xF4B910) = result;
+    return result;
 }
 
 int stackPushEntity(int arg) // as in getent() // todo: find out how to represent an entity

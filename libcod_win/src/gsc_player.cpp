@@ -469,6 +469,7 @@ int gsc_player_getip()
 	char tmp[64];
 	snprintf(tmp, 64, "%d.%d.%d.%d", ip_a, ip_b, ip_c, ip_d);
 	//snprintf(tmp, 64, "%d.%d.%d.%d:%d", ip_a, ip_b, ip_c, ip_d, port);
+	//Com_Printf("IP: %s\n", tmp);
 
 	return stackPushString(tmp);
 }
