@@ -11,14 +11,14 @@
 */
 
 // that makes debugging easier after some months
-#define DEBUG_MYSQL 0
+#define DEBUG_MYSQL 1
 #define DEBUG_GSC 0
 #define DEBUG_MEMORY 0
 #define DEBUG_CAR 0
 #define DEBUG_TCC 0
 
 // GSC MODULES
-#define COMPILE_MYSQL 0
+#define COMPILE_MYSQL 1
 #define COMPILE_MYSQL_TESTS 0
 #define COMPILE_PLAYER 1
 #define COMPILE_ASTAR 0

@@ -2,6 +2,7 @@
 #define GSC_H
 
 #include "gsc_player.h"
+#include "gsc_mysql.h"
 #include "config.h"
 
 #define COD1_1_5 115
@@ -116,6 +117,9 @@ int stackPushVector(float *ret);
 int stackPushFloat(float ret);
 int stackPushString(char *toPush);
 int stackPushEntity(int arg);
+
+int alloc_object_and_push_to_array();
+int push_previous_var_in_array_sub();
 
 int cdecl_injected_closer();
 

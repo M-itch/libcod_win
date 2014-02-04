@@ -243,6 +243,45 @@ int stackPushEntity(int arg) // as in getent() // todo: find out how to represen
     return signature(arg);
 }
 
+// as in bullettrace
+int alloc_object_and_push_to_array() // use stackPushArray() now
+{
+	int (*signature)();
+
+	#if COD_VERSION == COD2_1_3
+		*((int *)(&signature)) = 0x0483530;
+	#else
+		#warning int alloc_object_and_push_to_array() *((int *)(&signature)) = NULL;
+		*((int *)(&signature)) = (int)NULL;
+	#endif
+
+	return signature();
+}
+
+int stackPushArray()
+{
+	return alloc_object_and_push_to_array();
+}
+
+int push_previous_var_in_array_sub() // stackPushArrayLast()
+{
+	int (*signature)();
+
+	#if COD_VERSION == COD2_1_3
+		*((int *)(&signature)) = 0x04839A0;
+	#else
+		#warning int push_previous_var_in_array_sub() *((int *)(&signature)) = NULL;
+		*((int *)(&signature)) = (int)NULL;
+	#endif
+
+	return signature();
+}
+
+int stackPushArrayLast()
+{
+	return push_previous_var_in_array_sub();
+}
+
 int cdecl_injected_closer()
 {
     int function;

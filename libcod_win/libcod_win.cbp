@@ -21,6 +21,7 @@
 				</Compiler>
 				<Linker>
 					<Add library="user32" />
+					<Add library="vendors\lib\libmysql.lib" />
 				</Linker>
 				<Environment>
 					<Variable name="COD_VERSION" value="COD2_1_3" />
@@ -38,10 +39,13 @@
 					<Add option="-Wall" />
 					<Add option="-DCOD_VERSION=COD2_1_3" />
 					<Add option="-DBUILD_DLL" />
+					<Add directory="mysql" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="user32" />
+					<Add library="lib\libmysql.lib" />
+					<Add directory="mysql" />
 				</Linker>
 			</Target>
 		</Build>
@@ -49,11 +53,71 @@
 		<Unit filename="include/cracking.h" />
 		<Unit filename="include/functions.h" />
 		<Unit filename="include/gsc.h" />
+		<Unit filename="include/gsc_mysql.h" />
 		<Unit filename="include/gsc_player.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
+		<Unit filename="mysql/big_endian.h" />
+		<Unit filename="mysql/byte_order_generic.h" />
+		<Unit filename="mysql/byte_order_generic_x86.h" />
+		<Unit filename="mysql/byte_order_generic_x86_64.h" />
+		<Unit filename="mysql/decimal.h" />
+		<Unit filename="mysql/errmsg.h" />
+		<Unit filename="mysql/keycache.h" />
+		<Unit filename="mysql/little_endian.h" />
+		<Unit filename="mysql/m_ctype.h" />
+		<Unit filename="mysql/m_string.h" />
+		<Unit filename="mysql/my_alloc.h" />
+		<Unit filename="mysql/my_attribute.h" />
+		<Unit filename="mysql/my_byteorder.h" />
+		<Unit filename="mysql/my_compiler.h" />
+		<Unit filename="mysql/my_config.h" />
+		<Unit filename="mysql/my_dbug.h" />
+		<Unit filename="mysql/my_dir.h" />
+		<Unit filename="mysql/my_getopt.h" />
+		<Unit filename="mysql/my_global.h" />
+		<Unit filename="mysql/my_list.h" />
+		<Unit filename="mysql/my_net.h" />
+		<Unit filename="mysql/my_pthread.h" />
+		<Unit filename="mysql/my_sys.h" />
+		<Unit filename="mysql/my_xml.h" />
+		<Unit filename="mysql/mysql.h" />
+		<Unit filename="mysql/mysql/client_authentication.h" />
+		<Unit filename="mysql/mysql/client_plugin.h" />
+		<Unit filename="mysql/mysql/get_password.h" />
+		<Unit filename="mysql/mysql/plugin_auth_common.h" />
+		<Unit filename="mysql/mysql/plugin_trace.h" />
+		<Unit filename="mysql/mysql/psi/mysql_file.h" />
+		<Unit filename="mysql/mysql/psi/mysql_idle.h" />
+		<Unit filename="mysql/mysql/psi/mysql_mdl.h" />
+		<Unit filename="mysql/mysql/psi/mysql_memory.h" />
+		<Unit filename="mysql/mysql/psi/mysql_socket.h" />
+		<Unit filename="mysql/mysql/psi/mysql_sp.h" />
+		<Unit filename="mysql/mysql/psi/mysql_stage.h" />
+		<Unit filename="mysql/mysql/psi/mysql_statement.h" />
+		<Unit filename="mysql/mysql/psi/mysql_table.h" />
+		<Unit filename="mysql/mysql/psi/mysql_thread.h" />
+		<Unit filename="mysql/mysql/psi/mysql_transaction.h" />
+		<Unit filename="mysql/mysql/psi/psi.h" />
+		<Unit filename="mysql/mysql/psi/psi_base.h" />
+		<Unit filename="mysql/mysql/psi/psi_memory.h" />
+		<Unit filename="mysql/mysql/service_mysql_alloc.h" />
+		<Unit filename="mysql/mysql_com.h" />
+		<Unit filename="mysql/mysql_com_server.h" />
+		<Unit filename="mysql/mysql_embed.h" />
+		<Unit filename="mysql/mysql_time.h" />
+		<Unit filename="mysql/mysql_version.h" />
+		<Unit filename="mysql/mysqld_ername.h" />
+		<Unit filename="mysql/mysqld_error.h" />
+		<Unit filename="mysql/sql_common.h" />
+		<Unit filename="mysql/sql_state.h" />
+		<Unit filename="mysql/sslopt-case.h" />
+		<Unit filename="mysql/sslopt-longopts.h" />
+		<Unit filename="mysql/sslopt-vars.h" />
+		<Unit filename="mysql/typelib.h" />
 		<Unit filename="src/cracking.cpp" />
 		<Unit filename="src/gsc.cpp" />
+		<Unit filename="src/gsc_mysql.cpp" />
 		<Unit filename="src/gsc_player.cpp" />
 		<Extensions>
 			<code_completion />
