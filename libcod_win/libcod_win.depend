@@ -42,7 +42,7 @@
 	"../include/functions.h"
 	<string.h>
 
-1391539364 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc.h
+1391541007 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc.h
 	"gsc_player.h"
 	"gsc_mysql.h"
 	"config.h"
@@ -61,7 +61,7 @@
 
 1391294325 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc_player.h
 
-1391539279 c:\users\mitch\documents\github\libcod_win\libcod_win\include\config.h
+1391543692 c:\users\mitch\documents\github\libcod_win\libcod_win\include\config.h
 
 1391452877 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc_player.cpp
 	"../include/gsc_player.h"

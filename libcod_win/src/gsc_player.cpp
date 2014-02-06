@@ -8,7 +8,7 @@
 #if COD_VERSION == COD2_1_3
 	// 8716558 pointed on that!! and that i found in setorigin() with ida decompiler
 	// looked it up and it points to game_initialization_8109096()
-	int playerStates = 0x0193A780;
+	int playerStates = 0x01897E80;
 	int sizeOfPlayer = 0x28A4;
 #else
 	#warning int playerStates int sizeOfPlayer
@@ -17,8 +17,8 @@
 #endif
 
 #if COD_VERSION == COD2_1_3
-	int gentities = 0x01884FCC;
-	int gentities_size = 1208;
+	int gentities = 0x01744380;
+	int gentities_size = 560;
 #else
 	#warning int gentities int gentities_size
 	int gentities = NULL;

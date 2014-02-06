@@ -33,21 +33,40 @@ int stackNew()
     return signature();
 }
 
+int getNumberOfReturnValues()
+{
+    #if COD_VERSION == COD2_1_3
+        return 0x0F4B918;
+    #else
+        #warning int getNumberOfReturnValues() return NULL;
+        return (int)NULL;
+    #endif
+}
+
+void stackCheck()
+{
+    void (*signature)(signed int, const char *, ...);
+    *((int *)(&signature)) = 0x04324C0;
+
+    if ( *(int*)getStack() == *(int *)0x0F4B904 )
+        signature(1, (char *)(int *)0x05B01D0);
+}
+
+aStackElement* stackPush(int type)
+{
+    stackNew();
+    stackCheck();
+    *(int *)getStack() += 8;
+    ++*(int *)getNumberOfReturnValues();
+    aStackElement* scriptStack = *(aStackElement**)getStack();
+    scriptStack->type = type;
+    return scriptStack;
+}
+
 int stackPushUndefined()
 {
-    aStackElement *scriptStack;
-
-    scriptStack = *(aStackElement**)getStack();
-    stackNew();
-
-    scriptStack = *(aStackElement**)getStack();
-
-    //aStackElement *scriptStack = *(aStackElement**)getStack();
-    //aStackElement *scriptStack = *(aStackElement**)ret;
-    scriptStack->type = STACK_UNDEFINED;
-    scriptStack->offsetData = NULL; // never tested anything else for UNDEFINED
-    //return (int) *(aStackElement**) getStack(); // dunno...
-    return 123; // dunno... works also lol. so no need to return some specific stackelement
+    stackPush(STACK_UNDEFINED);
+    return 123;
 }
 
 int stackGetParamInt(int param, int *value)
@@ -175,16 +194,26 @@ int stackReturnVector(float *ret) // obsolete
 */
 int stackPushVector(float *ret) // as in vectornormalize
 {
-    int (*signature)(float *);
+    aStackElement * scriptStack = stackPush(STACK_VECTOR);
+
+    int tmp[3];
+    tmp[0] = (int)&ret[0];
+    tmp[1] = (int)&ret[1];
+    tmp[2] = (int)&ret[2];
+
+    scriptStack->offsetData = (void *)tmp;
+
+    return 123;
+    /*int (*signature)(float *);
 
     #if COD_VERSION == COD2_1_3
-        *((int *)(&signature)) = 0x04838B0;
+        *((int *)(&signature)) = 0x04838B0; // = usercall (doesn't work)
     #else
-        #warning int stackPushVector(float *ret) *((int *)(&signature)) = NULL;
+    #warning int stackPushVector(float *ret) *((int *)(&signature)) = NULL;
         *((int *)(&signature)) = (int)NULL;
     #endif
 
-    return signature(ret);
+    return signature(ret);*/
 }
 
 int stackPushFloat(float ret) // as in distance
@@ -203,17 +232,7 @@ int stackPushFloat(float ret) // as in distance
 
 int stackPushString(char *toPush) // as in getcvar()
 {
-    stackNew();
-
-    /*void (*sub_4324C0)(signed int, const char *, ...);
-    *((int *)(&sub_4324C0)) = 0x04324C0;
-
-    if ( *(int*)0x0F4B910 == *(int *)0x0F4B904 )
-        sub_4324C0(1, (char *)(int *)0x05B01D0);*/
-
-    *(int *)0xF4B910 += 8;
-    ++*(int *)0x0F4B918;
-    *(int *)((*(int*)0x0F4B910) + 4) = 2;
+    aStackElement* scriptStack = stackPush(STACK_STRING);
 
     int (*signature)(const void *, unsigned int8_t, unsigned int);
 
@@ -225,61 +244,56 @@ int stackPushString(char *toPush) // as in getcvar()
     #endif
 
     unsigned short int result = signature(toPush, 0, strlen(toPush)+1);
-    *(int *)(*(int *)0xF4B910) = result;
+    scriptStack->offsetData = (void *)result;
     return result;
 }
 
 int stackPushEntity(int arg) // as in getent() // todo: find out how to represent an entity
 {
-    int (*signature)(int);
-
-    #if COD_VERSION == COD2_1_3
-        *((int *)(&signature)) = 0x04836C0;
-    #else
-        #warning int stackPushEntity(int arg) *((int *)(&signature)) = NULL;
-        *((int *)(&signature)) = (int)NULL;
-    #endif
-
-    return signature(arg);
+    aStackElement* scriptStack = stackPush(STACK_OBJECT);
+    scriptStack->offsetData = (void *)arg;
+    int v4 = 16 * arg;
+    ++*(int *)(int *)((char *)(int *)0x0E08F04 + v4);
+    return (int)(((int *)0x0E08F04) + v4);
 }
 
 // as in bullettrace
 int alloc_object_and_push_to_array() // use stackPushArray() now
 {
-	int (*signature)();
+    int (*signature)();
 
-	#if COD_VERSION == COD2_1_3
-		*((int *)(&signature)) = 0x0483530;
-	#else
-		#warning int alloc_object_and_push_to_array() *((int *)(&signature)) = NULL;
-		*((int *)(&signature)) = (int)NULL;
-	#endif
+    #if COD_VERSION == COD2_1_3
+        *((int *)(&signature)) = 0x0483930;
+    #else
+        #warning int alloc_object_and_push_to_array() *((int *)(&signature)) = NULL;
+        *((int *)(&signature)) = (int)NULL;
+    #endif
 
-	return signature();
+    return signature();
 }
 
 int stackPushArray()
 {
-	return alloc_object_and_push_to_array();
+    return alloc_object_and_push_to_array();
 }
 
 int push_previous_var_in_array_sub() // stackPushArrayLast()
 {
-	int (*signature)();
+    int (*signature)();
 
-	#if COD_VERSION == COD2_1_3
-		*((int *)(&signature)) = 0x04839A0;
-	#else
-		#warning int push_previous_var_in_array_sub() *((int *)(&signature)) = NULL;
-		*((int *)(&signature)) = (int)NULL;
-	#endif
+    #if COD_VERSION == COD2_1_3
+        *((int *)(&signature)) = 0x04839A0;
+    #else
+        #warning int push_previous_var_in_array_sub() *((int *)(&signature)) = NULL;
+        *((int *)(&signature)) = (int)NULL;
+    #endif
 
-	return signature();
+    return signature();
 }
 
 int stackPushArrayLast()
 {
-	return push_previous_var_in_array_sub();
+    return push_previous_var_in_array_sub();
 }
 
 int cdecl_injected_closer()
@@ -287,31 +301,34 @@ int cdecl_injected_closer()
     int function;
 
     float reference[3], point_a[3], point_b[3];
-	if (
-		stackGetNumberOfParams() == 3 &&
-		stackGetParamVector(0, reference) &&
-		stackGetParamVector(1, point_a) &&
-		stackGetParamVector(2, point_b)
-	) {
-		// > Tests which of two points is the closest. Returns true if point a is closer to the reference than point b
-		float delta_a[3] = {
-			point_a[0] - reference[0],
-			point_a[1] - reference[1],
-			point_a[2] - reference[2]
-		};
-		float delta_b[3] = {
-			point_b[0] - reference[0],
-			point_b[1] - reference[1],
-			point_b[2] - reference[2]
-		};
-		float distancesquared_a = delta_a[0]*delta_a[0] + delta_a[1]*delta_a[1] + delta_a[2]*delta_a[2];
-		float distancesquared_b = delta_b[0]*delta_b[0] + delta_b[1]*delta_b[1] + delta_b[2]*delta_b[2];
+    if (
+        stackGetNumberOfParams() == 3 &&
+        stackGetParamVector(0, reference) &&
+        stackGetParamVector(1, point_a) &&
+        stackGetParamVector(2, point_b)
+    )
+    {
+        // > Tests which of two points is the closest. Returns true if point a is closer to the reference than point b
+        float delta_a[3] =
+        {
+            point_a[0] - reference[0],
+            point_a[1] - reference[1],
+            point_a[2] - reference[2]
+        };
+        float delta_b[3] =
+        {
+            point_b[0] - reference[0],
+            point_b[1] - reference[1],
+            point_b[2] - reference[2]
+        };
+        float distancesquared_a = delta_a[0]*delta_a[0] + delta_a[1]*delta_a[1] + delta_a[2]*delta_a[2];
+        float distancesquared_b = delta_b[0]*delta_b[0] + delta_b[1]*delta_b[1] + delta_b[2]*delta_b[2];
 
-		if (distancesquared_a < distancesquared_b)
-			return stackPushInt(1);
-		else
-			return stackPushInt(0);
-	}
+        if (distancesquared_a < distancesquared_b)
+            return stackPushInt(1);
+        else
+            return stackPushInt(0);
+    }
 
     if (!stackGetParamInt(0, &function))
     {
@@ -341,59 +358,101 @@ int cdecl_injected_closer()
 
         case 202:
         {
-            return stackPushString((char *)"pushworks");
+            //return stackPushString((char *)"pushworks");
+            float vec[3] = {1, 33, 7};
+            return stackPushVector(vec);
         }
 
         #if COMPILE_MYSQL == 1
-        case 100: return gsc_mysql_init();
-        case 101: return gsc_mysql_real_connect();
-        case 102: return gsc_mysql_close();
-        case 103: return gsc_mysql_query();
-        case 104: return gsc_mysql_errno();
-        case 105: return gsc_mysql_error();
-        case 106: return gsc_mysql_affected_rows();
-        case 107: return gsc_mysql_store_result();
-        case 108: return gsc_mysql_num_rows();
-        case 109: return gsc_mysql_num_fields();
-        case 110: return gsc_mysql_field_seek();
-        case 111: return gsc_mysql_fetch_field();
-        case 112: return gsc_mysql_fetch_row();
-        case 113: return gsc_mysql_free_result();
-        case 114: return gsc_mysql_real_escape_string();
-
-        case 150: return gsc_mysql_stmt_init();
-        case 151: return gsc_mysql_stmt_close();
-        case 152: return gsc_mysql_stmt_get_stmt_id();
-        case 153: return gsc_mysql_stmt_get_prefetch_rows();
-        case 154: return gsc_mysql_stmt_get_param_count();
-        case 155: return gsc_mysql_stmt_get_field_count();
-        case 156: return gsc_mysql_stmt_prepare();
-        case 157: return gsc_mysql_stmt_bind_param();
-        case 158: return gsc_mysql_stmt_bind_result();
-        case 159: return gsc_mysql_stmt_execute();
-        case 160: return gsc_mysql_stmt_store_result();
-        case 161: return gsc_mysql_stmt_fetch();
+        case 100:
+            return gsc_mysql_init();
+        case 101:
+            return gsc_mysql_real_connect();
+        case 102:
+            return gsc_mysql_close();
+        case 103:
+            return gsc_mysql_query();
+        case 104:
+            return gsc_mysql_errno();
+        case 105:
+            return gsc_mysql_error();
+        case 106:
+            return gsc_mysql_affected_rows();
+        case 107:
+            return gsc_mysql_store_result();
+        case 108:
+            return gsc_mysql_num_rows();
+        case 109:
+            return gsc_mysql_num_fields();
+        case 110:
+            return gsc_mysql_field_seek();
+        case 111:
+            return gsc_mysql_fetch_field();
+        case 112:
+            return gsc_mysql_fetch_row();
+        case 113:
+            return gsc_mysql_free_result();
+        case 114:
+            return gsc_mysql_real_escape_string();
+        case 150:
+            return gsc_mysql_stmt_init();
+        case 151:
+            return gsc_mysql_stmt_close();
+        case 152:
+            return gsc_mysql_stmt_get_stmt_id();
+        case 153:
+            return gsc_mysql_stmt_get_prefetch_rows();
+        case 154:
+            return gsc_mysql_stmt_get_param_count();
+        case 155:
+            return gsc_mysql_stmt_get_field_count();
+        case 156:
+            return gsc_mysql_stmt_prepare();
+        case 157:
+            return gsc_mysql_stmt_bind_param();
+        case 158:
+            return gsc_mysql_stmt_bind_result();
+        case 159:
+            return gsc_mysql_stmt_execute();
+        case 160:
+            return gsc_mysql_stmt_store_result();
+        case 161:
+            return gsc_mysql_stmt_fetch();
         #endif
 
         #if COMPILE_PLAYER == 1
-        case 400: return gsc_player_stance_get();
-		case 410: return gsc_player_velocity_set(); // todo: stackGetParamVector
-		case 411: return gsc_player_velocity_add(); // todo: stackGetParamVector
-		case 412: return gsc_player_velocity_get();
-		case 420: return gsc_player_button_ads();
-		case 421: return gsc_player_button_left();
-		case 422: return gsc_player_button_right();
-		case 423: return gsc_player_button_forward();
-		case 424: return gsc_player_button_back();
-		case 425: return gsc_player_button_leanleft();
-		case 426: return gsc_player_button_leanright();
-		case 427: return gsc_player_button_jump();
+        case 400:
+            return gsc_player_stance_get();
+        case 410:
+            return gsc_player_velocity_set(); // todo: stackGetParamVector
+        case 411:
+            return gsc_player_velocity_add(); // todo: stackGetParamVector
+        case 412:
+            return gsc_player_velocity_get();
+        case 420:
+            return gsc_player_button_ads();
+        case 421:
+            return gsc_player_button_left();
+        case 422:
+            return gsc_player_button_right();
+        case 423:
+            return gsc_player_button_forward();
+        case 424:
+            return gsc_player_button_back();
+        case 425:
+            return gsc_player_button_leanleft();
+        case 426:
+            return gsc_player_button_leanright();
+        case 427:
+            return gsc_player_button_jump();
+        case 430:
+            return gsc_player_getip();
+        case 431:
+            return gsc_player_getping();
 
-		case 430: return gsc_player_getip();
-		case 431: return gsc_player_getping();
-
-		case 450: return gsc_player_spectatorclient_get();
-		#endif
+        case 450:
+            return gsc_player_spectatorclient_get();
+        #endif
     }
 
     return stackReturnInt(0);

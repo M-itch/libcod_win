@@ -325,7 +325,7 @@ int gsc_mysql_fetch_row()
 	int numfields = mysql_num_fields((MYSQL_RES *)result);
 	for (int i=0; i<numfields; i++)
 	{
-		if (row[i] == NULL)
+	    if (row[i] == NULL)
 			stackPushUndefined();
 		else
 			stackPushString(row[i]);
