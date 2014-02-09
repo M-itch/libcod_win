@@ -360,8 +360,6 @@ int gsc_mysql_free_result()
 	return stackPushUndefined();
 }
 
-
-
 int gsc_mysql_real_escape_string()
 {
 	int mysql;

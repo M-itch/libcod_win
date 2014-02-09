@@ -4,12 +4,12 @@
 
 int getStack()
 {
-    #if COD_VERSION == COD2_1_3
-        return 0x0F4B910;
-    #else
-        #warning int getStack() return NULL;
-        return (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    return 0x0F4B910;
+#else
+#warning int getStack() return NULL;
+    return (int)NULL;
+#endif
 }
 
 /* THE BEGINNING of generalizing the push-value-functions! */
@@ -23,24 +23,24 @@ int stackNew()
 {
     int (*signature)();
 
-    #if COD_VERSION == COD2_1_3
-        *((int *)(&signature)) = 0x047D630;
-    #else
-        #warning int stackNew() *((int *)(&signature)) = NULL;
-        *((int *)(&signature)) = (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    *((int *)(&signature)) = 0x047D630;
+#else
+#warning int stackNew() *((int *)(&signature)) = NULL;
+    *((int *)(&signature)) = (int)NULL;
+#endif
 
     return signature();
 }
 
 int getNumberOfReturnValues()
 {
-    #if COD_VERSION == COD2_1_3
-        return 0x0F4B918;
-    #else
-        #warning int getNumberOfReturnValues() return NULL;
-        return (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    return 0x0F4B918;
+#else
+#warning int getNumberOfReturnValues() return NULL;
+    return (int)NULL;
+#endif
 }
 
 void stackCheck()
@@ -100,12 +100,12 @@ int stackGetParamString(int param, char **value)
     if (arg->type != STACK_STRING)
         return 0;
 
-    #if COD_VERSION == COD2_1_3
-        *value = (char *)(*(int *)0x0DF8D80 + 8*(int)arg->offsetData + 4);
-    #else
-        #warning stackGetParamString(int param, char **value) *value = (char *)(*(int *)NULL + 8*(int)arg->offsetData + 4);
-        *value = (char *)(*(int *)NULL + 8*(int)arg->offsetData + 4);
-    #endif
+#if COD_VERSION == COD2_1_3
+    *value = (char *)(*(int *)0x0DF8D80 + 8*(int)arg->offsetData + 4);
+#else
+#warning stackGetParamString(int param, char **value) *value = (char *)(*(int *)NULL + 8*(int)arg->offsetData + 4);
+    *value = (char *)(*(int *)NULL + 8*(int)arg->offsetData + 4);
+#endif
 
     return 1;
 }
@@ -147,12 +147,12 @@ int stackGetParamFloat(int param, float *value)
 
 int getNumberOfParams()
 {
-    #if COD_VERSION == COD2_1_3
-        return 0x0F4B91C;
-    #else
-        #warning int getNumberOfParams() return NULL;
-        return (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    return 0x0F4B91C;
+#else
+#warning int getNumberOfParams() return NULL;
+    return (int)NULL;
+#endif
 }
 
 int stackGetNumberOfParams()
@@ -170,12 +170,12 @@ int stackPushInt(int ret)
 {
     int (*signature)(int);
 
-    #if COD_VERSION == COD2_1_3
-        *((int *)(&signature)) = 0x0483580;
-    #else
-        #warning int stackPushInt(int ret)
-        *((int *)(&signature)) = (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    *((int *)(&signature)) = 0x0483580;
+#else
+#warning int stackPushInt(int ret)
+    *((int *)(&signature)) = (int)NULL;
+#endif
 
     return signature(ret);
 }
@@ -220,12 +220,12 @@ int stackPushFloat(float ret) // as in distance
 {
     int (*signature)(float);
 
-    #if COD_VERSION == COD2_1_3
-        *((int *)(&signature)) = 0x04835D0;
-    #else
-        #warning int stackPushFloat(float ret) *((int *)(&signature)) = NULL;
-        *((int *)(&signature)) = (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    *((int *)(&signature)) = 0x04835D0;
+#else
+#warning int stackPushFloat(float ret) *((int *)(&signature)) = NULL;
+    *((int *)(&signature)) = (int)NULL;
+#endif
 
     return signature(ret);
 }
@@ -236,12 +236,12 @@ int stackPushString(char *toPush) // as in getcvar()
 
     int (*signature)(const void *, unsigned int8_t, unsigned int);
 
-    #if COD_VERSION == COD2_1_3
-        *((int *)(&signature)) = 0x0477500;
-    #else
-        #warning int stackPushString(char *toPush) *((int *)(&signature)) = NULL;
-        *((int *)(&signature)) = (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    *((int *)(&signature)) = 0x0477500;
+#else
+#warning int stackPushString(char *toPush) *((int *)(&signature)) = NULL;
+    *((int *)(&signature)) = (int)NULL;
+#endif
 
     unsigned short int result = signature(toPush, 0, strlen(toPush)+1);
     scriptStack->offsetData = (void *)result;
@@ -262,12 +262,12 @@ int alloc_object_and_push_to_array() // use stackPushArray() now
 {
     int (*signature)();
 
-    #if COD_VERSION == COD2_1_3
-        *((int *)(&signature)) = 0x0483930;
-    #else
-        #warning int alloc_object_and_push_to_array() *((int *)(&signature)) = NULL;
-        *((int *)(&signature)) = (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    *((int *)(&signature)) = 0x0483930;
+#else
+#warning int alloc_object_and_push_to_array() *((int *)(&signature)) = NULL;
+    *((int *)(&signature)) = (int)NULL;
+#endif
 
     return signature();
 }
@@ -281,12 +281,12 @@ int push_previous_var_in_array_sub() // stackPushArrayLast()
 {
     int (*signature)();
 
-    #if COD_VERSION == COD2_1_3
-        *((int *)(&signature)) = 0x04839A0;
-    #else
-        #warning int push_previous_var_in_array_sub() *((int *)(&signature)) = NULL;
-        *((int *)(&signature)) = (int)NULL;
-    #endif
+#if COD_VERSION == COD2_1_3
+    *((int *)(&signature)) = 0x04839A0;
+#else
+#warning int push_previous_var_in_array_sub() *((int *)(&signature)) = NULL;
+    *((int *)(&signature)) = (int)NULL;
+#endif
 
     return signature();
 }
@@ -341,118 +341,131 @@ int cdecl_injected_closer()
 
     switch (function)
     {
-        case 200:
+    case 200:
+    {
+        char *msg;
+        int helper = 0;
+        helper += stackGetParamString(1, &msg); // todo: is string?
+        if (helper < 1)
         {
-            char *msg;
-            int helper = 0;
-            helper += stackGetParamString(1, &msg); // todo: is string?
-            if (helper < 1)
-            {
-                Com_Printf("scriptengine> wrongs args for: Com_Printf(msg): at least 1 arg\n");
-                return stackReturnInt(0);
-            }
-
-            Com_Printf(msg);
-            return stackReturnInt(1);
+            Com_Printf("scriptengine> wrongs args for: Com_Printf(msg): at least 1 arg\n");
+            return stackReturnInt(0);
         }
 
-        case 202:
-        {
-            //return stackPushString((char *)"pushworks");
-            float vec[3] = {1, 33, 7};
-            return stackPushVector(vec);
-        }
+        Com_Printf(msg);
+        return stackReturnInt(1);
+    }
 
-        #if COMPILE_MYSQL == 1
-        case 100:
-            return gsc_mysql_init();
-        case 101:
-            return gsc_mysql_real_connect();
-        case 102:
-            return gsc_mysql_close();
-        case 103:
-            return gsc_mysql_query();
-        case 104:
-            return gsc_mysql_errno();
-        case 105:
-            return gsc_mysql_error();
-        case 106:
-            return gsc_mysql_affected_rows();
-        case 107:
-            return gsc_mysql_store_result();
-        case 108:
-            return gsc_mysql_num_rows();
-        case 109:
-            return gsc_mysql_num_fields();
-        case 110:
-            return gsc_mysql_field_seek();
-        case 111:
-            return gsc_mysql_fetch_field();
-        case 112:
-            return gsc_mysql_fetch_row();
-        case 113:
-            return gsc_mysql_free_result();
-        case 114:
-            return gsc_mysql_real_escape_string();
-        case 150:
-            return gsc_mysql_stmt_init();
-        case 151:
-            return gsc_mysql_stmt_close();
-        case 152:
-            return gsc_mysql_stmt_get_stmt_id();
-        case 153:
-            return gsc_mysql_stmt_get_prefetch_rows();
-        case 154:
-            return gsc_mysql_stmt_get_param_count();
-        case 155:
-            return gsc_mysql_stmt_get_field_count();
-        case 156:
-            return gsc_mysql_stmt_prepare();
-        case 157:
-            return gsc_mysql_stmt_bind_param();
-        case 158:
-            return gsc_mysql_stmt_bind_result();
-        case 159:
-            return gsc_mysql_stmt_execute();
-        case 160:
-            return gsc_mysql_stmt_store_result();
-        case 161:
-            return gsc_mysql_stmt_fetch();
-        #endif
+    case 202:
+    {
+        //return stackPushString((char *)"pushworks");
+        float vec[3] = {1, 33, 7};
+        return stackPushVector(vec);
+    }
 
-        #if COMPILE_PLAYER == 1
-        case 400:
-            return gsc_player_stance_get();
-        case 410:
-            return gsc_player_velocity_set(); // todo: stackGetParamVector
-        case 411:
-            return gsc_player_velocity_add(); // todo: stackGetParamVector
-        case 412:
-            return gsc_player_velocity_get();
-        case 420:
-            return gsc_player_button_ads();
-        case 421:
-            return gsc_player_button_left();
-        case 422:
-            return gsc_player_button_right();
-        case 423:
-            return gsc_player_button_forward();
-        case 424:
-            return gsc_player_button_back();
-        case 425:
-            return gsc_player_button_leanleft();
-        case 426:
-            return gsc_player_button_leanright();
-        case 427:
-            return gsc_player_button_jump();
-        case 430:
-            return gsc_player_getip();
-        case 431:
-            return gsc_player_getping();
+#if COMPILE_MYSQL == 1
+    case 100:
+        return gsc_mysql_init();
+    case 101:
+        return gsc_mysql_real_connect();
+    case 102:
+        return gsc_mysql_close();
+    case 103:
+        return gsc_mysql_query();
+    case 104:
+        return gsc_mysql_errno();
+    case 105:
+        return gsc_mysql_error();
+    case 106:
+        return gsc_mysql_affected_rows();
+    case 107:
+        return gsc_mysql_store_result();
+    case 108:
+        return gsc_mysql_num_rows();
+    case 109:
+        return gsc_mysql_num_fields();
+    case 110:
+        return gsc_mysql_field_seek();
+    case 111:
+        return gsc_mysql_fetch_field();
+    case 112:
+        return gsc_mysql_fetch_row();
+    case 113:
+        return gsc_mysql_free_result();
+    case 114:
+        return gsc_mysql_real_escape_string();
+    case 150:
+        return gsc_mysql_stmt_init();
+    case 151:
+        return gsc_mysql_stmt_close();
+    case 152:
+        return gsc_mysql_stmt_get_stmt_id();
+    case 153:
+        return gsc_mysql_stmt_get_prefetch_rows();
+    case 154:
+        return gsc_mysql_stmt_get_param_count();
+    case 155:
+        return gsc_mysql_stmt_get_field_count();
+    case 156:
+        return gsc_mysql_stmt_prepare();
+    case 157:
+        return gsc_mysql_stmt_bind_param();
+    case 158:
+        return gsc_mysql_stmt_bind_result();
+    case 159:
+        return gsc_mysql_stmt_execute();
+    case 160:
+        return gsc_mysql_stmt_store_result();
+    case 161:
+        return gsc_mysql_stmt_fetch();
+#endif
 
-        case 450:
-            return gsc_player_spectatorclient_get();
-        #endif
+#if COMPILE_PLAYER == 1
+    case 400:
+        return gsc_player_stance_get();
+    case 410:
+        return gsc_player_velocity_set(); // todo: stackGetParamVector
+    case 411:
+        return gsc_player_velocity_add(); // todo: stackGetParamVector
+    case 412:
+        return gsc_player_velocity_get();
+    case 420:
+        return gsc_player_button_ads();
+    case 421:
+        return gsc_player_button_left();
+    case 422:
+        return gsc_player_button_right();
+    case 423:
+        return gsc_player_button_forward();
+    case 424:
+        return gsc_player_button_back();
+    case 425:
+        return gsc_player_button_leanleft();
+    case 426:
+        return gsc_player_button_leanright();
+    case 427:
+        return gsc_player_button_jump();
+    case 430:
+        return gsc_player_getip();
+    case 431:
+        return gsc_player_getping();
+
+    case 450:
+        return gsc_player_spectatorclient_get();
+#endif
+
+    case 900:
+        return gsc_utils_disableGlobalPlayerCollision();
+    case 901:
+        return gsc_utils_ClientCommand();
+    case 902:
+        return gsc_utils_getAscii();
+    case 903:
+        return gsc_utils_system();
+    case 904:
+        return gsc_utils_file_link();
+    case 905:
+        return gsc_utils_file_unlink();
     }
 
     return stackReturnInt(0);

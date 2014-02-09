@@ -18,6 +18,7 @@
 					<Add option="-g" />
 					<Add option="-DCOD_VERSION=COD2_1_3" />
 					<Add option="-DBUILD_DLL" />
+					<Add option="-D_WIN32_WINNT=0x500" />
 				</Compiler>
 				<Linker>
 					<Add library="user32" />
@@ -39,6 +40,7 @@
 					<Add option="-Wall" />
 					<Add option="-DCOD_VERSION=COD2_1_3" />
 					<Add option="-DBUILD_DLL" />
+					<Add option="-D_WIN32_WINNT=0x500" />
 					<Add directory="mysql" />
 				</Compiler>
 				<Linker>
@@ -55,6 +57,7 @@
 		<Unit filename="include/gsc.h" />
 		<Unit filename="include/gsc_mysql.h" />
 		<Unit filename="include/gsc_player.h" />
+		<Unit filename="include/gsc_utils.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="main.h" />
 		<Unit filename="mysql/big_endian.h" />
@@ -119,6 +122,7 @@
 		<Unit filename="src/gsc.cpp" />
 		<Unit filename="src/gsc_mysql.cpp" />
 		<Unit filename="src/gsc_player.cpp" />
+		<Unit filename="src/gsc_utils.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

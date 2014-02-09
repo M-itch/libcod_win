@@ -3,6 +3,7 @@
 
 #include "gsc_player.h"
 #include "gsc_mysql.h"
+#include "gsc_utils.h"
 #include "config.h"
 
 #define COD1_1_5 115
