@@ -19,10 +19,12 @@
 					<Add option="-DCOD_VERSION=COD2_1_3" />
 					<Add option="-DBUILD_DLL" />
 					<Add option="-D_WIN32_WINNT=0x500" />
+					<Add directory="mysql" />
 				</Compiler>
 				<Linker>
 					<Add library="user32" />
-					<Add library="vendors\lib\libmysql.lib" />
+					<Add library="lib\libmysql.lib" />
+					<Add directory="mysql" />
 				</Linker>
 				<Environment>
 					<Variable name="COD_VERSION" value="COD2_1_3" />

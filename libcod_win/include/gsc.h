@@ -102,6 +102,7 @@ typedef struct
 	int type;
 } aStackElement;
 
+int getStack();
 int stackNew();
 int stackPushUndefined();
 
@@ -110,6 +111,9 @@ int stackGetParamString(int param, char **value);
 int stackGetParamVector(int param, float value[3]);
 int stackGetParamFloat(int param, float *value);
 int stackGetNumberOfParams();
+int stackGetParamType(int param);
+char *stackGetParamTypeAsString(int param);
+int stackGetParams(char *params, ...);
 
 int stackReturnInt(int ret); // obsolete
 int stackPushInt(int ret);
@@ -122,6 +126,32 @@ int stackPushEntity(int arg);
 int alloc_object_and_push_to_array();
 int push_previous_var_in_array_sub();
 
-int cdecl_injected_closer();
+// real functions and methods
+
+// functions
+typedef void (*Scr_FunctionCall)();
+
+typedef struct {
+	const char *name;
+	Scr_FunctionCall call;
+	int developer;
+} Scr_Function;
+
+typedef Scr_FunctionCall (*Scr_GetFunction_t)(const char **fname, int *fdev);
+
+Scr_FunctionCall Scr_GetCustomFunction(const char **fname, int *fdev);
+
+// methods
+typedef void (*Scr_MethodCall)(int);
+
+typedef struct {
+	const char* name;
+	Scr_MethodCall call;
+	int developer;
+} Scr_Method;
+
+typedef Scr_MethodCall (*Scr_GetMethod_t)(const char**, int*);
+
+Scr_MethodCall Scr_GetCustomMethod(const char **fname, int *fdev);
 
 #endif // GSC_H

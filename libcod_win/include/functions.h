@@ -10,4 +10,13 @@ typedef int (*Com_Printf_t)(const char*, ...);
     #warning Com_Printf_t Com_Printf = NULL;
 #endif
 
+typedef int (*Cmd_ExecuteString_t)(const char *text);
+
+#if COD_VERSION == COD2_1_3
+    static Cmd_ExecuteString_t Cmd_ExecuteString = (Cmd_ExecuteString_t)0x04214C0;
+#else
+    static Cmd_ExecuteString_t Cmd_ExecuteString = (Cmd_ExecuteString_t)NULL;
+    #warning Cmd_ExecuteString_t Cmd_ExecuteString = NULL;
+#endif
+
 #endif // FUNCTIONS_H

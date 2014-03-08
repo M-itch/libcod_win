@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include <tlhelp32.h>
+#include <iostream>
 
 void EnableDebugPriv() {
     HANDLE hToken;
@@ -29,6 +30,7 @@ int main( int, char *[] ) {
     if ( Process32First( snapshot, &entry ) == TRUE ) {
         while ( Process32Next( snapshot, &entry ) == TRUE ) {
             if ( stricmp( entry.szExeFile, "CoD2MP_s.exe" ) == 0 ) {
+                std::cout << "Found CoD2MP_s.exe\n";
                 EnableDebugPriv();
 
                 char dirPath[MAX_PATH];
@@ -38,18 +40,23 @@ int main( int, char *[] ) {
 
                 snprintf ( fullPath, MAX_PATH, "%s\\libcod_win.dll", dirPath );
 
+                std::cout << "Injecting: " << fullPath << "\n";
+
                 HANDLE hProcess = OpenProcess( PROCESS_CREATE_THREAD | PROCESS_VM_OPERATION | PROCESS_VM_WRITE, FALSE, entry.th32ProcessID );
+                std::cout << "Process: " << entry.th32ProcessID << "\n";
                 LPVOID libAddr = (LPVOID)GetProcAddress( GetModuleHandle( "kernel32.dll" ), "LoadLibraryA" );
                 LPVOID llParam = (LPVOID)VirtualAllocEx( hProcess, NULL, strlen( fullPath ), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE );
 
-                WriteProcessMemory( hProcess, llParam, fullPath, strlen( fullPath ), NULL );
-                CreateRemoteThread( hProcess, NULL, NULL, (LPTHREAD_START_ROUTINE)libAddr, llParam, NULL, NULL );
+                bool written = WriteProcessMemory( hProcess, llParam, fullPath, strlen( fullPath ), NULL );
+                HANDLE threadID = CreateRemoteThread( hProcess, NULL, NULL, (LPTHREAD_START_ROUTINE)libAddr, llParam, NULL, NULL );
                 CloseHandle( hProcess );
+                std::cout << "Finished injecting DLL (" << written << ") thread #" << threadID;
             }
         }
     }
 
     CloseHandle( snapshot );
+    getchar();
 
     return 0;
 }

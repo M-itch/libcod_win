@@ -13,13 +13,9 @@ DWORD WINAPI MyThread(LPVOID)
     Com_Printf("[PLUGIN LOADED]\n");
 
     #if COD_VERSION == COD2_1_3
-        int closer = 0x509290;
-    #else
-        int closer = (int)NULL;
-        #warning int closer = NULL;
+        cracking_hook_call(0x46E7BF, (int)Scr_GetCustomFunction);
+        cracking_hook_call(0x46EA03, (int)Scr_GetCustomMethod);
     #endif
-
-    cracking_hook_function(closer, (int)cdecl_injected_closer); // hook original closer function
 
     return 0;
 }
