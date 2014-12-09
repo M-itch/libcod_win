@@ -125,6 +125,10 @@ Scr_Function scriptFunctions[] = {
 	{"mysql_real_escape_string", gsc_mysql_real_escape_string, 0},
 	#endif
 
+	#if COMPILE_PLAYER == 1
+	{"free_slot"                   , gsc_free_slot                         , 0},
+	#endif
+
 	#if COMPILE_UTILS == 1
 	{"disableGlobalPlayerCollision", gsc_utils_disableGlobalPlayerCollision, 0},
 	{"getAscii"                    , gsc_utils_getAscii                    , 0},

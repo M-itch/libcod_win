@@ -30,4 +30,6 @@ void gsc_player_getLastMSG(int id);
 void gsc_entity_setalive(int id);
 void gsc_entity_setbounds(int id);
 
+void gsc_free_slot();
+
 #endif

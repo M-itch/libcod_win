@@ -349,4 +349,28 @@ void gsc_entity_setbounds(int id) {
 	stackReturnInt(1);
 }
 
+void gsc_free_slot()
+{
+	int id = 0;
+	if(!stackGetParamInt(0, &id))
+	{
+		printf("Param 0 needs to be an int for free_slot\n");
+		stackPushUndefined();
+		return;
+	}
+
+	#if COD_VERSION == COD2_1_3
+		int info_base = *(int *)0x0D3570C;
+		int info_size = 0xB1064;
+	#else
+		#warning gsc_free_slot() got no working addresses
+		int info_base = *(int *)0x0;
+		int info_size = 0x0;
+	#endif
+
+	int entity = info_base + id * info_size;
+	*(int*)entity = 0; //CS_FREE
+	stackPushUndefined();
+}
+
 #endif
