@@ -1,18 +1,27 @@
 #include "main.h"
 #include <stdio.h>
+#include "include/gsc.h"
 #include "include/functions.h"
 #include "include/cracking.h"
-#include "include/gsc.h"
 
 DWORD WINAPI MyThread(LPVOID);
 DWORD g_threadID;
 HMODULE g_hModule;
+static int isStarted = 0;
 
 DWORD WINAPI MyThread(LPVOID)
 {
+    if (isStarted) {
+        Com_Printf("Already started!\n");
+        return (int)NULL;
+    }
+    isStarted = 1;
     Com_Printf("[PLUGIN LOADED]\n");
 
-    #if COD_VERSION == COD2_1_3
+    #if COD_VERSION == COD2_1_0
+        cracking_hook_call(0x46B83F, (int)Scr_GetCustomFunction);
+        cracking_hook_call(0x46BA83, (int)Scr_GetCustomMethod);
+    #elif COD_VERSION == COD2_1_3
         cracking_hook_call(0x46E7BF, (int)Scr_GetCustomFunction);
         cracking_hook_call(0x46EA03, (int)Scr_GetCustomMethod);
     #endif
@@ -25,6 +34,7 @@ extern "C" DLL_EXPORT BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
     switch (fdwReason)
     {
         case DLL_PROCESS_ATTACH:
+            //MessageBoxA( NULL, "[PLUGIN LOADED]", "libcod", MB_OK );
             g_hModule = hinstDLL;
             DisableThreadLibraryCalls(hinstDLL);
             CloseHandle(CreateThread(NULL, 0, &MyThread, NULL, 0, &g_threadID));

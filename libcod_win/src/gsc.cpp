@@ -4,7 +4,10 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+	Scr_GetFunction_t Scr_GetFunction = (Scr_GetFunction_t)0x506F30;
+	Scr_GetMethod_t Scr_GetMethod = (Scr_GetMethod_t)0x506FC0;
+#elif COD_VERSION == COD2_1_3
 	Scr_GetFunction_t Scr_GetFunction = (Scr_GetFunction_t)0x50D280;
 	Scr_GetMethod_t Scr_GetMethod = (Scr_GetMethod_t)0x50D310;
 #else
@@ -93,7 +96,7 @@ void gsc_utils_printf() {
 		if (str[i] == '%')
 			stackPrintParam(param++);
 		else
-			putchar(str[i]);
+			Com_Printf("%c", str[i]);
 	}
 
 	stackPushInt(1);
@@ -215,10 +218,12 @@ Scr_MethodCall Scr_GetCustomMethod(const char **fname, int *fdev) {
 
 int getStack()
 {
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    return 0x0DF2A10;
+#elif COD_VERSION == COD2_1_3
     return 0x0F4B910;
 #else
-#warning int getStack() return NULL;
+    #warning int getStack() return NULL;
     return (int)NULL;
 #endif
 }
@@ -299,10 +304,12 @@ int stackNew()
 {
     int (*signature)();
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    *((int *)(&signature)) = 0x047A6A0;
+#elif COD_VERSION == COD2_1_3
     *((int *)(&signature)) = 0x047D630;
 #else
-#warning int stackNew() *((int *)(&signature)) = NULL;
+    #warning int stackNew() *((int *)(&signature)) = NULL;
     *((int *)(&signature)) = (int)NULL;
 #endif
 
@@ -311,10 +318,12 @@ int stackNew()
 
 int getNumberOfReturnValues()
 {
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    return 0x0DF2A18;
+#elif COD_VERSION == COD2_1_3
     return 0x0F4B918;
 #else
-#warning int getNumberOfReturnValues() return NULL;
+    #warning int getNumberOfReturnValues() return NULL;
     return (int)NULL;
 #endif
 }
@@ -322,10 +331,24 @@ int getNumberOfReturnValues()
 void stackCheck()
 {
     void (*signature)(signed int, const char *, ...);
-    *((int *)(&signature)) = 0x04324C0;
 
-    if ( *(int*)getStack() == *(int *)0x0F4B904 )
-        signature(1, (char *)(int *)0x05B01D0);
+    #if COD_VERSION == COD2_1_0
+        int stackend = 0x0DF2A04;
+        int data = 0x056F7F8;
+        *((int *)(&signature)) = 0x0430B20;
+    #elif COD_VERSION == COD2_1_3
+        int stackend = 0x0F4B904;
+        int data = 0x05B01D0;
+        *((int *)(&signature)) = 0x04324C0;
+    #else
+        int stackend = (int)NULL;
+        int data = (int)NULL;
+        *((int *)(&signature)) = (int)NULL;
+    #endif
+
+
+    if ( *(int*)getStack() == *(int *)stackend )
+        signature(1, (char *)(int *)data);
 }
 
 aStackElement* stackPush(int type)
@@ -376,10 +399,12 @@ int stackGetParamString(int param, char **value)
     if (arg->type != STACK_STRING)
         return 0;
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    *value = (char *)(*(int *)0x0C9FE80 + 8*(int)arg->offsetData + 4);
+#elif COD_VERSION == COD2_1_3
     *value = (char *)(*(int *)0x0DF8D80 + 8*(int)arg->offsetData + 4);
 #else
-#warning stackGetParamString(int param, char **value) *value = (char *)(*(int *)NULL + 8*(int)arg->offsetData + 4);
+    #warning stackGetParamString(int param, char **value) *value = (char *)(*(int *)NULL + 8*(int)arg->offsetData + 4);
     *value = (char *)(*(int *)NULL + 8*(int)arg->offsetData + 4);
 #endif
 
@@ -423,10 +448,12 @@ int stackGetParamFloat(int param, float *value)
 
 int getNumberOfParams()
 {
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    return 0x0DF2A1C;
+#elif COD_VERSION == COD2_1_3
     return 0x0F4B91C;
 #else
-#warning int getNumberOfParams() return NULL;
+    #warning int getNumberOfParams() return NULL;
     return (int)NULL;
 #endif
 }
@@ -446,10 +473,12 @@ int stackPushInt(int ret)
 {
     int (*signature)(int);
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    *((int *)(&signature)) = 0x04804D0;
+#elif COD_VERSION == COD2_1_3
     *((int *)(&signature)) = 0x0483580;
 #else
-#warning int stackPushInt(int ret)
+    #warning int stackPushInt(int ret)
     *((int *)(&signature)) = (int)NULL;
 #endif
 
@@ -496,10 +525,12 @@ int stackPushFloat(float ret) // as in distance
 {
     int (*signature)(float);
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    *((int *)(&signature)) = 0x0480520;
+#elif COD_VERSION == COD2_1_3
     *((int *)(&signature)) = 0x04835D0;
 #else
-#warning int stackPushFloat(float ret) *((int *)(&signature)) = NULL;
+    #warning int stackPushFloat(float ret) *((int *)(&signature)) = NULL;
     *((int *)(&signature)) = (int)NULL;
 #endif
 
@@ -512,10 +543,12 @@ int stackPushString(char *toPush) // as in getcvar()
 
     int (*signature)(const void *, unsigned int8_t, unsigned int);
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    *((int *)(&signature)) = 0x0474560;
+#elif COD_VERSION == COD2_1_3
     *((int *)(&signature)) = 0x0477500;
 #else
-#warning int stackPushString(char *toPush) *((int *)(&signature)) = NULL;
+    #warning int stackPushString(char *toPush) *((int *)(&signature)) = NULL;
     *((int *)(&signature)) = (int)NULL;
 #endif
 
@@ -527,11 +560,19 @@ int stackPushString(char *toPush) // as in getcvar()
 int stackPushEntity(int arg) // as in getent() // todo: find out how to represent an entity
 {
     aStackElement* scriptStack = stackPush(STACK_OBJECT);
-    scriptStack->offsetData = (void *)arg; // 0x04836C0
+    scriptStack->offsetData = (void *)arg;
+
+    #if COD_VERSION == COD2_1_0
+        int address = 0x0CB0004; // 0x0480610
+    #elif COD_VERSION == COD2_1_3
+        int address = 0x0E08F04; // 0x04836C0
+    #else
+        int address = (int)NULL;
+    #endif
 
     int v4 = 16 * arg;
-    ++*(int *)(int *)((char *)(int *)0x0E08F04 + v4);
-    return (int)(((int *)0x0E08F04) + v4);
+    ++*(int *)(int *)((char *)(int *)address + v4);
+    return (int)(((int *)address) + v4);
 }
 
 // as in bullettrace
@@ -539,10 +580,12 @@ int alloc_object_and_push_to_array() // use stackPushArray() now
 {
     int (*signature)();
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    *((int *)(&signature)) = 0x0480880;
+#elif COD_VERSION == COD2_1_3
     *((int *)(&signature)) = 0x0483930;
 #else
-#warning int alloc_object_and_push_to_array() *((int *)(&signature)) = NULL;
+    #warning int alloc_object_and_push_to_array() *((int *)(&signature)) = NULL;
     *((int *)(&signature)) = (int)NULL;
 #endif
 
@@ -558,10 +601,12 @@ int push_previous_var_in_array_sub() // stackPushArrayLast()
 {
     int (*signature)();
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    *((int *)(&signature)) = 0x04808F0;
+#elif COD_VERSION == COD2_1_3
     *((int *)(&signature)) = 0x04839A0;
 #else
-#warning int push_previous_var_in_array_sub() *((int *)(&signature)) = NULL;
+    #warning int push_previous_var_in_array_sub() *((int *)(&signature)) = NULL;
     *((int *)(&signature)) = (int)NULL;
 #endif
 

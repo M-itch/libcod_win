@@ -60,13 +60,22 @@ void gsc_utils_file_unlink() {
 	stackPushInt( DeleteFile(file) ); // 1 == success
 }
 
+BOOL FileExists(LPCTSTR szPath)
+{
+  DWORD dwAttrib = GetFileAttributes(szPath);
+
+  return (dwAttrib != INVALID_FILE_ATTRIBUTES &&
+         !(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
+}
+
 void gsc_utils_file_exists() {
 	char *filename;
 	if ( ! stackGetParams((char *)"s", &filename)) {
 		stackPushUndefined();
 		return;
 	}
-	stackPushInt(1);
+
+	stackPushInt(FileExists(filename));
 }
 
 void gsc_utils_getType() {
