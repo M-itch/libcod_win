@@ -37,7 +37,7 @@
 1391122798 c:\users\mitch\documents\github\libcod_win\libcod_win\include\cracking.h
 	<string.h>
 
-1420325630 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc.cpp
+1420840387 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc.cpp
 	"../include/gsc.h"
 	"../include/functions.h"
 	<string.h>
@@ -50,10 +50,9 @@
 	"gsc_utils.h"
 	"config.h"
 
-1420371781 c:\users\mitch\documents\github\libcod_win\libcod_win\include\functions.h
-	<stdio.h>
+1420485052 c:\users\mitch\documents\github\libcod_win\libcod_win\include\functions.h
 
-1420396948 source:c:\users\mitch\documents\github\libcod_win\libcod_win\main.cpp
+1420840524 source:c:\users\mitch\documents\github\libcod_win\libcod_win\main.cpp
 	"main.h"
 	<stdio.h>
 	"include/gsc.h"

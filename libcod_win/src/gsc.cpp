@@ -89,12 +89,25 @@ void gsc_utils_printf() {
 		return;
 	}
 
+	if(stackGetNumberOfParams() == 1 || strchr(str, '%') == NULL)
+    {
+        Com_Printf("%s", str);
+        stackPushInt(1);
+        return;
+    }
+
 	int param = 1; // maps to first %
 	int len = strlen(str);
 
 	for (int i=0; i<len; i++) {
 		if (str[i] == '%')
-			stackPrintParam(param++);
+		{
+			if(str[i + 1] == '%') {
+				Com_Printf("%c", '%');
+				i++;
+			} else
+				stackPrintParam(param++);
+		}
 		else
 			Com_Printf("%c", str[i]);
 	}

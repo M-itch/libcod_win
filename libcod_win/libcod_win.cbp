@@ -8,7 +8,7 @@
 		<Build>
 			<Target title="Debug CoD2 1.3">
 				<Option output="bin/Debug/libcod2_1_3" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option object_output="obj/Debug/cod2_1_3/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -32,7 +32,7 @@
 			</Target>
 			<Target title="Release CoD2 1.0">
 				<Option output="bin/Release/libcod2_1_0" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option object_output="obj/Release/cod2_1_0/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -54,7 +54,7 @@
 			</Target>
 			<Target title="Release CoD2 1.3">
 				<Option output="bin/Release/libcod2_1_3" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option object_output="obj/Release/cod2_1_3/" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />

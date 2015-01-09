@@ -1,6 +1,5 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
-#include <stdio.h>
 
 typedef int (*Com_Printf_t)(const char*, ...);
 
