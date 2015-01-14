@@ -50,7 +50,7 @@
 	"gsc_utils.h"
 	"config.h"
 
-1420485052 c:\users\mitch\documents\github\libcod_win\libcod_win\include\functions.h
+1421233250 c:\users\mitch\documents\github\libcod_win\libcod_win\include\functions.h
 
 1420840524 source:c:\users\mitch\documents\github\libcod_win\libcod_win\main.cpp
 	"main.h"
@@ -66,7 +66,7 @@
 
 1394286785 c:\users\mitch\documents\github\libcod_win\libcod_win\include\config.h
 
-1418152427 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc_player.cpp
+1420929032 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc_player.cpp
 	"../include/gsc_player.h"
 	"../include/functions.h"
 	"../include/gsc.h"

@@ -315,15 +315,15 @@ int stackGetParams(char *params, ...)
 /* can also be found in the next stackPush-functions */
 int stackNew()
 {
-    int (*signature)();
+    typedef int (*signature_t)();
 
 #if COD_VERSION == COD2_1_0
-    *((int *)(&signature)) = 0x047A6A0;
+    signature_t signature = (signature_t)0x047A6A0;
 #elif COD_VERSION == COD2_1_3
-    *((int *)(&signature)) = 0x047D630;
+    signature_t signature = (signature_t)0x047D630;
 #else
-    #warning int stackNew() *((int *)(&signature)) = NULL;
-    *((int *)(&signature)) = (int)NULL;
+    #warning int stackNew() signature_t signature = NULL;
+    signature_t signature = (signature_t)NULL;
 #endif
 
     return signature();
@@ -343,20 +343,20 @@ int getNumberOfReturnValues()
 
 void stackCheck()
 {
-    void (*signature)(signed int, const char *, ...);
+    typedef void (*signature_t)(signed int, const char *, ...);
 
     #if COD_VERSION == COD2_1_0
         int stackend = 0x0DF2A04;
         int data = 0x056F7F8;
-        *((int *)(&signature)) = 0x0430B20;
+        signature_t signature = (signature_t)0x0430B20;
     #elif COD_VERSION == COD2_1_3
         int stackend = 0x0F4B904;
         int data = 0x05B01D0;
-        *((int *)(&signature)) = 0x04324C0;
+        signature_t signature = (signature_t)0x04324C0;
     #else
         int stackend = (int)NULL;
         int data = (int)NULL;
-        *((int *)(&signature)) = (int)NULL;
+        signature_t signature = (signature_t)NULL;
     #endif
 
 
@@ -484,15 +484,15 @@ int stackReturnInt(int ret) // obsolete
 
 int stackPushInt(int ret)
 {
-    int (*signature)(int);
+    typedef int (*signature_t)(int value);
 
 #if COD_VERSION == COD2_1_0
-    *((int *)(&signature)) = 0x04804D0;
+    signature_t signature = (signature_t)0x04804D0;
 #elif COD_VERSION == COD2_1_3
-    *((int *)(&signature)) = 0x0483580;
+    signature_t signature = (signature_t)0x0483580;
 #else
-    #warning int stackPushInt(int ret)
-    *((int *)(&signature)) = (int)NULL;
+    #warning int stackPushInt(int ret) signature_t signature = NULL
+    signature_t signature = (signature_t)NULL;
 #endif
 
     return signature(ret);
@@ -536,15 +536,15 @@ int stackPushVector(float *ret) // as in vectornormalize
 
 int stackPushFloat(float ret) // as in distance
 {
-    int (*signature)(float);
+    typedef int (*signature_t)(float value);
 
 #if COD_VERSION == COD2_1_0
-    *((int *)(&signature)) = 0x0480520;
+    signature_t signature = (signature_t)0x0480520;
 #elif COD_VERSION == COD2_1_3
-    *((int *)(&signature)) = 0x04835D0;
+    signature_t signature = (signature_t)0x04835D0;
 #else
-    #warning int stackPushFloat(float ret) *((int *)(&signature)) = NULL;
-    *((int *)(&signature)) = (int)NULL;
+    #warning int stackPushFloat(float ret) signature_t signature = NULL;
+    signature_t signature = (signature_t)NULL;
 #endif
 
     return signature(ret);
@@ -554,15 +554,15 @@ int stackPushString(char *toPush) // as in getcvar()
 {
     aStackElement* scriptStack = stackPush(STACK_STRING);
 
-    int (*signature)(const void *, unsigned int8_t, unsigned int);
+    typedef int (*signature_t)(const void *, unsigned int8_t, unsigned int);
 
 #if COD_VERSION == COD2_1_0
-    *((int *)(&signature)) = 0x0474560;
+    signature_t signature = (signature_t)0x0474560;
 #elif COD_VERSION == COD2_1_3
-    *((int *)(&signature)) = 0x0477500;
+    signature_t signature = (signature_t)0x0477500;
 #else
-    #warning int stackPushString(char *toPush) *((int *)(&signature)) = NULL;
-    *((int *)(&signature)) = (int)NULL;
+    #warning int stackPushString(char *toPush) signature_t signature = NULL;
+    signature_t signature = (signature_t)NULL;
 #endif
 
     unsigned short int result = signature(toPush, 0, strlen(toPush)+1);
@@ -591,15 +591,15 @@ int stackPushEntity(int arg) // as in getent() // todo: find out how to represen
 // as in bullettrace
 int alloc_object_and_push_to_array() // use stackPushArray() now
 {
-    int (*signature)();
+    typedef int (*signature_t)();
 
 #if COD_VERSION == COD2_1_0
-    *((int *)(&signature)) = 0x0480880;
+    signature_t signature = (signature_t)0x0480880;
 #elif COD_VERSION == COD2_1_3
-    *((int *)(&signature)) = 0x0483930;
+    signature_t signature = (signature_t)0x0483930;
 #else
-    #warning int alloc_object_and_push_to_array() *((int *)(&signature)) = NULL;
-    *((int *)(&signature)) = (int)NULL;
+    #warning int alloc_object_and_push_to_array() signature_t signature = NULL;
+    signature_t signature = (signature_t)NULL;
 #endif
 
     return signature();
@@ -612,15 +612,15 @@ int stackPushArray()
 
 int push_previous_var_in_array_sub() // stackPushArrayLast()
 {
-    int (*signature)();
+    typedef int (*signature_t)();
 
 #if COD_VERSION == COD2_1_0
-    *((int *)(&signature)) = 0x04808F0;
+    signature_t signature = (signature_t)0x04808F0;
 #elif COD_VERSION == COD2_1_3
-    *((int *)(&signature)) = 0x04839A0;
+    signature_t signature = (signature_t)0x04839A0;
 #else
-    #warning int push_previous_var_in_array_sub() *((int *)(&signature)) = NULL;
-    *((int *)(&signature)) = (int)NULL;
+    #warning int push_previous_var_in_array_sub() signature_t signature = NULL;
+    signature_t signature = (signature_t)NULL;
 #endif
 
     return signature();
