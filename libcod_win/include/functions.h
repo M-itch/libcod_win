@@ -14,7 +14,9 @@ typedef int (*Com_Printf_t)(const char*, ...);
 
 typedef int (*Cmd_ExecuteString_t)(const char *text);
 
-#if COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0
+    static Cmd_ExecuteString_t Cmd_ExecuteString = (Cmd_ExecuteString_t)0x041FD10;
+#elif COD_VERSION == COD2_1_3
     static Cmd_ExecuteString_t Cmd_ExecuteString = (Cmd_ExecuteString_t)0x04214C0;
 #else
     static Cmd_ExecuteString_t Cmd_ExecuteString = (Cmd_ExecuteString_t)0;
