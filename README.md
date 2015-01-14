@@ -1,8 +1,9 @@
 The Call of Duty extension *libcod* is adding new server-side functions to:
 
- - Call Of Duty 2 1.2
+ - Call of Duty 2 1.0 
+ - Call Of Duty 2 1.2 (Linux)
  - Call Of Duty 2 1.3
- - Call Of Duty 4 1.7
+ - Call Of Duty 4 1.7 (Linux)
 
 Run InjectDLL to inject the DLL into your server.
 
