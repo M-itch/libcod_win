@@ -513,15 +513,9 @@ int stackReturnVector(float *ret) // obsolete
 int stackPushVector(float *ret) // as in vectornormalize
 {
     aStackElement * scriptStack = stackPush(STACK_VECTOR);
+    scriptStack->offsetData = (void*)ret;
 
-    int tmp[3];
-    tmp[0] = (int)&ret[0];
-    tmp[1] = (int)&ret[1];
-    tmp[2] = (int)&ret[2];
-
-    scriptStack->offsetData = (void *)tmp;
-
-    return 123;
+    return 1;
     /*int (*signature)(float *);
 
     #if COD_VERSION == COD2_1_3
@@ -565,7 +559,7 @@ int stackPushString(char *toPush) // as in getcvar()
     signature_t signature = (signature_t)NULL;
 #endif
 
-    unsigned short int result = signature(toPush, 0, strlen(toPush)+1);
+    int result = signature(toPush, 0, strlen(toPush)+1);
     scriptStack->offsetData = (void *)result;
     return result;
 }
@@ -583,9 +577,9 @@ int stackPushEntity(int arg) // as in getent() // todo: find out how to represen
         int address = (int)NULL;
     #endif
 
-    int v4 = 16 * arg;
-    ++*(int *)(int *)((char *)(int *)address + v4);
-    return (int)(((int *)address) + v4);
+    int v4 = 4 * arg;
+    ++*(int *)((int *)address + v4);
+    return (int)((int *)address + v4);
 }
 
 // as in bullettrace
