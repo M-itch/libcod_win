@@ -37,22 +37,23 @@
 1391122798 c:\users\mitch\documents\github\libcod_win\libcod_win\include\cracking.h
 	<string.h>
 
-1421445076 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc.cpp
+1421697872 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc.cpp
 	"../include/gsc.h"
 	"../include/functions.h"
 	<string.h>
 	<stdio.h>
 	<stdarg.h>
 
-1420324670 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc.h
+1421697837 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc.h
 	"gsc_player.h"
 	"gsc_mysql.h"
 	"gsc_utils.h"
 	"config.h"
 
-1421233250 c:\users\mitch\documents\github\libcod_win\libcod_win\include\functions.h
+1421697928 c:\users\mitch\documents\github\libcod_win\libcod_win\include\functions.h
+	<string.h>
 
-1420840524 source:c:\users\mitch\documents\github\libcod_win\libcod_win\main.cpp
+1421698443 source:c:\users\mitch\documents\github\libcod_win\libcod_win\main.cpp
 	"main.h"
 	<stdio.h>
 	"include/gsc.h"
@@ -66,7 +67,7 @@
 
 1394286785 c:\users\mitch\documents\github\libcod_win\libcod_win\include\config.h
 
-1420929032 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc_player.cpp
+1421690681 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc_player.cpp
 	"../include/gsc_player.h"
 	"../include/functions.h"
 	"../include/gsc.h"
@@ -76,7 +77,7 @@
 
 1394289000 c:\users\mitch\documents\github\libcod_win\libcod_win\include\gsc_utils.h
 
-1394287650 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc_mysql.cpp
+1421697757 source:c:\users\mitch\documents\github\libcod_win\libcod_win\src\gsc_mysql.cpp
 	"../include/gsc_mysql.h"
 	"../include/functions.h"
 	"../include/gsc.h"

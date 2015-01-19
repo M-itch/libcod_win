@@ -582,8 +582,7 @@ int stackPushEntity(int arg) // as in getent() // todo: find out how to represen
     return (int)((int *)address + v4);
 }
 
-// as in bullettrace
-int alloc_object_and_push_to_array() // use stackPushArray() now
+int stackPushArray() // as in bullettrace
 {
     typedef int (*signature_t)();
 
@@ -599,12 +598,7 @@ int alloc_object_and_push_to_array() // use stackPushArray() now
     return signature();
 }
 
-int stackPushArray()
-{
-    return alloc_object_and_push_to_array();
-}
-
-int push_previous_var_in_array_sub() // stackPushArrayLast()
+int stackPushArrayLast()
 {
     typedef int (*signature_t)();
 
@@ -618,9 +612,4 @@ int push_previous_var_in_array_sub() // stackPushArrayLast()
 #endif
 
     return signature();
-}
-
-int stackPushArrayLast()
-{
-    return push_previous_var_in_array_sub();
 }

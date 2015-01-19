@@ -289,7 +289,7 @@ void gsc_player_getping(int id) {
 }
 
 void gsc_player_ClientCommand(int id) {
-	//stackPushInt(ClientCommand(id));
+	stackPushInt(0); //ClientCommand(id));
 }
 
 void gsc_player_getLastConnectTime(int id) {

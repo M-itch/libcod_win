@@ -6,9 +6,10 @@
 void EnableDebugPriv();
 void CALLBACK WaitOrTimerCallback(PVOID lpParameter, BOOLEAN TimerOrWaitFired);
 int GetProcessByName(char *name, HANDLE *outProcessHandle, int *outProcessID);
-void InjectDLL(HANDLE hProcess, char *name);
+void InjectDLL(HANDLE hProcess, char *name, bool delay);
 void WaitForProcessAndInjectDLL(char *name_process, char *name_dll);
 void LoopInjecting();
+bool nodelay = false;
 
 BOOL FileExists(LPCTSTR szPath)
 {
@@ -55,7 +56,7 @@ int GetProcessByName(char *name, HANDLE *outProcessHandle, int *outProcessID) {
     return 0;
 }
 
-void InjectDLL(HANDLE hProcess, char *name) {
+void InjectDLL(HANDLE hProcess, char *name, bool delay) {
     char dirPath[MAX_PATH];
     char fullPath[MAX_PATH];
     GetCurrentDirectory( MAX_PATH, dirPath );
@@ -63,6 +64,9 @@ void InjectDLL(HANDLE hProcess, char *name) {
 
     if(FileExists(fullPath) == 1)
     {
+        if(delay && !nodelay)
+            Sleep(350); // delay injecting due to UAC popup
+
         printf("Injecting: %s\n", fullPath);
         LPVOID libAddr = (LPVOID)GetProcAddress( GetModuleHandle( "kernel32.dll" ), "LoadLibraryA" );
         LPVOID llParam = (LPVOID)VirtualAllocEx( hProcess, NULL, strlen( fullPath ) + 1, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE );
@@ -80,15 +84,17 @@ void WaitForProcessAndInjectDLL(char *name_process, char *name_dll) {
     printf("WaitForProcessAndInjectDLL(process=%s, dll=%s);\n", name_process, name_dll);
     HANDLE hProcess;
     int processID;
+    bool delay = false;
     while (1) {
         int ret = GetProcessByName(name_process, &hProcess, &processID);
         if (ret == 0) {
             printf(".");
             Sleep(1000);
+            delay = true;
             continue;
         }
         printf("\nprocessID=%d\n", processID);
-        InjectDLL(hProcess, name_dll);
+        InjectDLL(hProcess, name_dll, delay);
         HANDLE hNewHandle;
         RegisterWaitForSingleObject(&hNewHandle, hProcess, WaitOrTimerCallback, NULL, INFINITE, WT_EXECUTEONLYONCE);
         break;
@@ -109,6 +115,10 @@ int main(int c, char **v) {
         getchar();
         return 1;
     }
+
+    if(argc == 4 && strcmp(argv[3], "1"))
+        nodelay = true;
+
     EnableDebugPriv();
     LoopInjecting();
     getchar();

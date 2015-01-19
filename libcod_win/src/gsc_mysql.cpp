@@ -245,7 +245,7 @@ void gsc_mysql_fetch_row() {
 		return;
 	}
 
-	alloc_object_and_push_to_array();
+	stackPushArray();
 
 	int numfields = mysql_num_fields((MYSQL_RES *)result);
 	for (int i=0; i<numfields; i++)
@@ -258,7 +258,7 @@ void gsc_mysql_fetch_row() {
 		#if DEBUG_MYSQL
 		Com_Printf("row == \"%s\"\n", row[i]);
 		#endif
-		push_previous_var_in_array_sub();
+		stackPushArrayLast();
 	}
 }
 

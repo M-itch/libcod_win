@@ -122,9 +122,8 @@ int stackPushVector(float *ret);
 int stackPushFloat(float ret);
 int stackPushString(char *toPush);
 int stackPushEntity(int arg);
-
-int alloc_object_and_push_to_array();
-int push_previous_var_in_array_sub();
+int stackPushArray();
+int stackPushArrayLast();
 
 // real functions and methods
 
