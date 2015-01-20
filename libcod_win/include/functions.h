@@ -32,19 +32,21 @@ typedef int (*Cmd_ExecuteString_t)(const char *text);
 		#warning trap_Argc() return *(int *)NULL;
 		return *(int *)NULL;
 	#endif
-}
+}*/
 
 static char * Cmd_Argv(int arg)
 {
-    #if COD_VERSION == COD2_1_3
-        return (char*)(*(int*)0x0B17A80 + arg);
+    #if COD_VERSION == COD2_1_0
+        return (char*)*(int*)(0x0A6C480 + arg * 4);
+    #elif COD_VERSION == COD2_1_3
+        return (char*)*(int*)(0x0B17A80 + arg * 4);
     #else
         #warning Cmd_Argv() return (char*)NULL;
         return (char*)NULL;
     #endif
 }
 
-static void trap_Argv(unsigned int param, char* buf, int bufLen)
+/*static void trap_Argv(unsigned int param, char* buf, int bufLen)
 {
     char* cmd = Cmd_Argv(param);
     strncpy(buf, cmd, bufLen);

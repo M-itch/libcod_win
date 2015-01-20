@@ -8,6 +8,8 @@ DWORD WINAPI MyThread(LPVOID);
 DWORD g_threadID;
 HMODULE g_hModule;
 static int isStarted = 0;
+typedef int (*SV_BeginDownload_f_t)(int a1);
+static SV_BeginDownload_f_t SV_BeginDownload_f = (SV_BeginDownload_f_t)NULL;
 /*int codecallback_playercommand = 0;
 
 typedef void (*gametype_scripts_t)();
@@ -92,6 +94,16 @@ void hook_codscript_gametype_scripts()
 	return 0;
 }*/
 
+void hook_SV_BeginDownload_f( int a1 ) {
+	char * file = Cmd_Argv(1);
+	int len;
+
+	if((len = strlen(file)) > 3 && !strcmp(file + len - 4, ".iwd"))
+		SV_BeginDownload_f(a1);
+	else
+		Com_Printf("Invalid download attempt: %s\n", file);
+}
+
 DWORD WINAPI MyThread(LPVOID)
 {
     if (isStarted) {
@@ -100,6 +112,21 @@ DWORD WINAPI MyThread(LPVOID)
     }
     isStarted = 1;
     Com_Printf("[PLUGIN LOADED]\n");
+
+    #if COD_VERSION == COD2_1_0
+        int * addressToDownloadPointer = (int *)0x0591D74;
+    #elif COD_VERSION == COD2_1_3
+        int * addressToDownloadPointer = (int *)0x05D43DC;
+    #else
+        #warning int *addressToDownloadPointer = NULL;
+        int *addressToDownloadPointer = NULL;
+    #endif
+
+    #if COD_VERSION == COD2_1_0 || COD_VERSION == COD2_1_3
+        Com_Printf("> [INFO] value of download=%.8x\n", *addressToDownloadPointer);
+        SV_BeginDownload_f = (SV_BeginDownload_f_t)*addressToDownloadPointer;
+        *addressToDownloadPointer = (int)hook_SV_BeginDownload_f;
+    #endif
 
     #if COD_VERSION == COD2_1_0
         cracking_hook_call(0x46B83F, (int)Scr_GetCustomFunction);
