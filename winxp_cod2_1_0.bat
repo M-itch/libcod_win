@@ -1,0 +1,1 @@
+winxp_libcod2_1_0.exe +set dedicated 2
