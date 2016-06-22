@@ -129,3 +129,23 @@ int cracking_write_hex(int address, char *hex)
 
 	return bytes;
 }
+
+
+cHook::cHook(int from, int to) {
+	this->from = from;
+	this->to = to;
+}
+void cHook::hook() {
+	memcpy((void *)oldCode, (void *)from, 5);
+	cracking_hook_function(from, to);
+}
+void cHook::unhook() {
+
+    DWORD tmp;
+    VirtualProtect((void*)from, 5, PAGE_EXECUTE_READWRITE, &tmp);
+
+	memcpy((void *)from, (void *)oldCode, 5);
+
+
+    VirtualProtect((void*)from, 5, tmp, &tmp);
+}

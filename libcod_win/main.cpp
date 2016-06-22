@@ -138,8 +138,16 @@ DWORD WINAPI MyThread(LPVOID)
         //cracking_hook_call(hook_ClientCommand_call, (int)hook_ClientCommand);
     #endif
 
+    // just tested why the fuck nothing is printed in +dedicated 2 console... but it's printed ingame tho
+    while(0) {
+        Sleep(1000);
+        Com_Printf("[PLUGIN LOADED]\n");
+    }
+
     return 0;
 }
+
+int restore_entry_function();
 
 extern "C" DLL_EXPORT BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
@@ -149,6 +157,9 @@ extern "C" DLL_EXPORT BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
             //MessageBoxA( NULL, "[PLUGIN LOADED]", "libcod", MB_OK );
             g_hModule = hinstDLL;
             DisableThreadLibraryCalls(hinstDLL);
+
+            // maybe add a check if this .dll is injected, because that would probably crash now... this dll is intended to be called from the patched .exe's
+            restore_entry_function();
             CloseHandle(CreateThread(NULL, 0, &MyThread, NULL, 0, &g_threadID));
             break;
 
