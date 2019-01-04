@@ -7,6 +7,9 @@
 #if COD_VERSION == COD2_1_0
 	Scr_GetFunction_t Scr_GetFunction = (Scr_GetFunction_t)0x506F30;
 	Scr_GetMethod_t Scr_GetMethod = (Scr_GetMethod_t)0x506FC0;
+#elif COD_VERSION == COD2_1_0_1
+	Scr_GetFunction_t Scr_GetFunction = (Scr_GetFunction_t)0x507600;
+	Scr_GetMethod_t Scr_GetMethod = (Scr_GetMethod_t)0x507690;
 #elif COD_VERSION == COD2_1_3
 	Scr_GetFunction_t Scr_GetFunction = (Scr_GetFunction_t)0x50D280;
 	Scr_GetMethod_t Scr_GetMethod = (Scr_GetMethod_t)0x50D310;
@@ -233,6 +236,8 @@ int getStack()
 {
 #if COD_VERSION == COD2_1_0
     return 0x0DF2A10;
+#elif COD_VERSION == COD2_1_0_1
+    return 0x0DF4310;
 #elif COD_VERSION == COD2_1_3
     return 0x0F4B910;
 #else
@@ -319,6 +324,8 @@ int stackNew()
 
 #if COD_VERSION == COD2_1_0
     signature_t signature = (signature_t)0x047A6A0;
+#elif COD_VERSION == COD2_1_0_1
+    signature_t signature = (signature_t)0x047AC90;
 #elif COD_VERSION == COD2_1_3
     signature_t signature = (signature_t)0x047D630;
 #else
@@ -333,6 +340,8 @@ int getNumberOfReturnValues()
 {
 #if COD_VERSION == COD2_1_0
     return 0x0DF2A18;
+#elif COD_VERSION == COD2_1_0_1
+    return 0x0DF4318;
 #elif COD_VERSION == COD2_1_3
     return 0x0F4B918;
 #else
@@ -349,6 +358,10 @@ void stackCheck()
         int stackend = 0x0DF2A04;
         int data = 0x056F7F8;
         signature_t signature = (signature_t)0x0430B20;
+    #elif COD_VERSION == COD2_1_0_1
+        int stackend = 0x0DF4304;
+        int data = 0x0570938;
+        signature_t signature = (signature_t)0x0430E70;
     #elif COD_VERSION == COD2_1_3
         int stackend = 0x0F4B904;
         int data = 0x05B01D0;
@@ -414,6 +427,8 @@ int stackGetParamString(int param, char **value)
 
 #if COD_VERSION == COD2_1_0
     *value = (char *)(*(int *)0x0C9FE80 + 8*(int)arg->offsetData + 4);
+#elif COD_VERSION == COD2_1_0_1
+    *value = (char *)(*(int *)0x0CA1780 + 8*(int)arg->offsetData + 4);
 #elif COD_VERSION == COD2_1_3
     *value = (char *)(*(int *)0x0DF8D80 + 8*(int)arg->offsetData + 4);
 #else
@@ -463,6 +478,8 @@ int getNumberOfParams()
 {
 #if COD_VERSION == COD2_1_0
     return 0x0DF2A1C;
+#elif COD_VERSION == COD2_1_0_1
+    return 0x0DF431C;
 #elif COD_VERSION == COD2_1_3
     return 0x0F4B91C;
 #else
@@ -488,6 +505,8 @@ int stackPushInt(int ret)
 
 #if COD_VERSION == COD2_1_0
     signature_t signature = (signature_t)0x04804D0;
+#elif COD_VERSION == COD2_1_0_1
+    signature_t signature = (signature_t)0x0480BE0;
 #elif COD_VERSION == COD2_1_3
     signature_t signature = (signature_t)0x0483580;
 #else
@@ -534,6 +553,8 @@ int stackPushFloat(float ret) // as in distance
 
 #if COD_VERSION == COD2_1_0
     signature_t signature = (signature_t)0x0480520;
+#elif COD_VERSION == COD2_1_0_1
+    signature_t signature = (signature_t)0x0480C30;
 #elif COD_VERSION == COD2_1_3
     signature_t signature = (signature_t)0x04835D0;
 #else
@@ -552,6 +573,8 @@ int stackPushString(char *toPush) // as in getcvar()
 
 #if COD_VERSION == COD2_1_0
     signature_t signature = (signature_t)0x0474560;
+#elif COD_VERSION == COD2_1_0_1
+    signature_t signature = (signature_t)0x0474B60;
 #elif COD_VERSION == COD2_1_3
     signature_t signature = (signature_t)0x0477500;
 #else
@@ -571,6 +594,8 @@ int stackPushEntity(int arg) // as in getent() // todo: find out how to represen
 
     #if COD_VERSION == COD2_1_0
         int address = 0x0CB0004; // 0x0480610
+    #elif COD_VERSION == COD2_1_0_1
+        int address = 0x0CB1904;
     #elif COD_VERSION == COD2_1_3
         int address = 0x0E08F04; // 0x04836C0
     #else
@@ -588,6 +613,8 @@ int stackPushArray() // as in bullettrace
 
 #if COD_VERSION == COD2_1_0
     signature_t signature = (signature_t)0x0480880;
+#elif COD_VERSION == COD2_1_0_1
+    signature_t signature = (signature_t)0x0480F90;
 #elif COD_VERSION == COD2_1_3
     signature_t signature = (signature_t)0x0483930;
 #else
@@ -604,6 +631,8 @@ int stackPushArrayLast()
 
 #if COD_VERSION == COD2_1_0
     signature_t signature = (signature_t)0x04808F0;
+#elif COD_VERSION == COD2_1_0_1
+    signature_t signature = (signature_t)0x0481000;
 #elif COD_VERSION == COD2_1_3
     signature_t signature = (signature_t)0x04839A0;
 #else

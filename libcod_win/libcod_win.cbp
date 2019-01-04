@@ -74,6 +74,28 @@
 					<Add directory="mysql" />
 				</Linker>
 			</Target>
+			<Target title="Release CoD2 1.0.1">
+				<Option output="bin/Release/libcod2_1_0_1" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/cod2_1_0_1/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-DCOD_VERSION=COD2_1_0_1" />
+					<Add option="-DBUILD_DLL" />
+					<Add option="-D_WIN32_WINNT=0x500" />
+					<Add directory="mysql" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="user32" />
+					<Add library="lib/libmysql.lib" />
+					<Add directory="mysql" />
+				</Linker>
+			</Target>
 		</Build>
 		<Unit filename="include/config.h" />
 		<Unit filename="include/cracking.h" />

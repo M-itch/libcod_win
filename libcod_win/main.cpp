@@ -115,6 +115,8 @@ DWORD WINAPI MyThread(LPVOID)
 
     #if COD_VERSION == COD2_1_0
         int * addressToDownloadPointer = (int *)0x0591D74;
+    #elif COD_VERSION == COD2_1_0_1
+        int * addressToDownloadPointer = (int *)0x0592D7C;
     #elif COD_VERSION == COD2_1_3
         int * addressToDownloadPointer = (int *)0x05D43DC;
     #else
@@ -122,7 +124,7 @@ DWORD WINAPI MyThread(LPVOID)
         int *addressToDownloadPointer = NULL;
     #endif
 
-    #if COD_VERSION == COD2_1_0 || COD_VERSION == COD2_1_3
+    #if COD_VERSION == COD2_1_0 || COD_VERSION == COD2_1_0_1 || COD_VERSION == COD2_1_3
         Com_Printf("> [INFO] value of download=%.8x\n", *addressToDownloadPointer);
         SV_BeginDownload_f = (SV_BeginDownload_f_t)*addressToDownloadPointer;
         *addressToDownloadPointer = (int)hook_SV_BeginDownload_f;
@@ -131,6 +133,9 @@ DWORD WINAPI MyThread(LPVOID)
     #if COD_VERSION == COD2_1_0
         cracking_hook_call(0x46B83F, (int)Scr_GetCustomFunction);
         cracking_hook_call(0x46BA83, (int)Scr_GetCustomMethod);
+    #elif COD_VERSION == COD2_1_0_1
+        cracking_hook_call(0x46BE1F, (int)Scr_GetCustomFunction);
+        cracking_hook_call(0x46C063, (int)Scr_GetCustomMethod);
     #elif COD_VERSION == COD2_1_3
         cracking_hook_call(0x46E7BF, (int)Scr_GetCustomFunction);
         cracking_hook_call(0x46EA03, (int)Scr_GetCustomMethod);

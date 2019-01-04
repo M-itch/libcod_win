@@ -131,3 +131,198 @@
 	<stdlib.h>
 	<windows.h>
 
+1486829417 source:d:\documents\projects\libcod_win\libcod_win\src\gsc.cpp
+	"../include/gsc.h"
+	"../include/functions.h"
+	<string.h>
+	<stdio.h>
+	<stdarg.h>
+
+1486823664 d:\documents\projects\libcod_win\libcod_win\include\gsc.h
+	"gsc_player.h"
+	"gsc_mysql.h"
+	"gsc_utils.h"
+	"config.h"
+
+1486822848 d:\documents\projects\libcod_win\libcod_win\include\gsc_player.h
+
+1486822848 d:\documents\projects\libcod_win\libcod_win\include\gsc_mysql.h
+
+1486822848 d:\documents\projects\libcod_win\libcod_win\include\gsc_utils.h
+
+1486822848 d:\documents\projects\libcod_win\libcod_win\include\config.h
+
+1487283420 d:\documents\projects\libcod_win\libcod_win\include\functions.h
+	<string.h>
+
+1486822850 source:d:\documents\projects\libcod_win\libcod_win\src\gsc_mysql.cpp
+	"../include/gsc_mysql.h"
+	"../include/functions.h"
+	"../include/gsc.h"
+	<mysql.h>
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\mysql.h
+	<sys/types.h>
+	<windows.h>
+	<winsock2.h>
+	"mysql_version.h"
+	"mysql_com.h"
+	"mysql_time.h"
+	"my_list.h"
+	"mysql/client_plugin.h"
+	"typelib.h"
+	"my_alloc.h"
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\mysql_version.h
+	<custom_conf.h>
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\mysql_com.h
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\mysql_time.h
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\my_list.h
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\mysql\client_plugin.h
+	<stdarg.h>
+	<stdlib.h>
+	<mysql/plugin_auth_common.h>
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\mysql\plugin_auth_common.h
+	<windows.h>
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\typelib.h
+	"my_alloc.h"
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\my_alloc.h
+	<mysql/psi/psi_memory.h>
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\mysql\psi\psi_memory.h
+	"psi_base.h"
+
+1486822850 d:\documents\projects\libcod_win\libcod_win\mysql\mysql\psi\psi_base.h
+
+1486840100 source:d:\documents\projects\libcod_win\libcod_win\src\gsc_player.cpp
+	"../include/gsc_player.h"
+	"../include/functions.h"
+	"../include/gsc.h"
+	<stdio.h>
+
+1486822850 source:d:\documents\projects\libcod_win\libcod_win\src\gsc_utils.cpp
+	"../include/gsc_utils.h"
+	"../include/functions.h"
+	"../include/gsc.h"
+	"../include/cracking.h"
+	<string.h>
+	<stdlib.h>
+	<windows.h>
+
+1487417238 d:\documents\projects\libcod_win\libcod_win\include\cracking.h
+	<string.h>
+
+1486823036 source:d:\documents\projects\libcod_win\libcod_win\src\restore_entry_functions.cpp
+	<stdio.h>
+	<Windows.h>
+	"../include/cracking.h"
+	"../include/gsc.h"
+
+1486829417 source:z:\backups\mitch\projects\libcod_win\libcod_win\src\gsc.cpp
+	"../include/gsc.h"
+	"../include/functions.h"
+	<string.h>
+	<stdio.h>
+	<stdarg.h>
+
+1486823664 z:\backups\mitch\projects\libcod_win\libcod_win\include\gsc.h
+	"gsc_player.h"
+	"gsc_mysql.h"
+	"gsc_utils.h"
+	"config.h"
+
+1486822848 z:\backups\mitch\projects\libcod_win\libcod_win\include\gsc_player.h
+
+1486822848 z:\backups\mitch\projects\libcod_win\libcod_win\include\gsc_mysql.h
+
+1486822848 z:\backups\mitch\projects\libcod_win\libcod_win\include\gsc_utils.h
+
+1486822848 z:\backups\mitch\projects\libcod_win\libcod_win\include\config.h
+
+1546633024 z:\backups\mitch\projects\libcod_win\libcod_win\include\functions.h
+
+1486822850 source:z:\backups\mitch\projects\libcod_win\libcod_win\src\gsc_mysql.cpp
+	"../include/gsc_mysql.h"
+	"../include/functions.h"
+	"../include/gsc.h"
+	<mysql.h>
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\mysql.h
+	<sys/types.h>
+	<windows.h>
+	<winsock2.h>
+	"mysql_version.h"
+	"mysql_com.h"
+	"mysql_time.h"
+	"my_list.h"
+	"mysql/client_plugin.h"
+	"typelib.h"
+	"my_alloc.h"
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\mysql_version.h
+	<custom_conf.h>
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\mysql_com.h
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\mysql_time.h
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\my_list.h
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\mysql\client_plugin.h
+	<stdarg.h>
+	<stdlib.h>
+	<mysql/plugin_auth_common.h>
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\mysql\plugin_auth_common.h
+	<windows.h>
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\typelib.h
+	"my_alloc.h"
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\my_alloc.h
+	<mysql/psi/psi_memory.h>
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\mysql\psi\psi_memory.h
+	"psi_base.h"
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\mysql\mysql\psi\psi_base.h
+
+1486822850 source:z:\backups\mitch\projects\libcod_win\libcod_win\src\gsc_utils.cpp
+	"../include/gsc_utils.h"
+	"../include/functions.h"
+	"../include/gsc.h"
+	"../include/cracking.h"
+	<string.h>
+	<stdlib.h>
+	<windows.h>
+
+1546632974 z:\backups\mitch\projects\libcod_win\libcod_win\include\cracking.h
+	<string.h>
+
+1546632932 source:z:\backups\mitch\projects\libcod_win\libcod_win\main.cpp
+	"main.h"
+	<stdio.h>
+	"include/gsc.h"
+	"include/functions.h"
+	"include/cracking.h"
+
+1486822850 z:\backups\mitch\projects\libcod_win\libcod_win\main.h
+	<windows.h>
+
+1546633076 source:z:\backups\mitch\projects\libcod_win\libcod_win\src\cracking.cpp
+	"../include/cracking.h"
+	<windows.h>
+
+1546633145 source:z:\backups\mitch\projects\libcod_win\libcod_win\src\gsc_player.cpp
+	"../include/gsc_player.h"
+	"../include/functions.h"
+	"../include/gsc.h"
+	<stdio.h>
+

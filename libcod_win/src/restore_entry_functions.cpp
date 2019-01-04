@@ -108,6 +108,20 @@ void restore_start_function_and_jump_to_it() {
             cracking_write_hex(0x005450F1, (char *)"FF157C915500"); // CALL DWORD PTR DS:[<&KERNEL32.GetVersion>; KERNEL32.GetVersionExA
             cracking_write_hex(0x005450F7, (char *)"8B4E10"); // MOV ECX,DWORD PTR DS:[ESI+10]
             asm("jmp *%0"::"r"(0x005450D1):);
+        #elif COD_VERSION == COD2_1_0_1
+            cracking_write_hex(0x005455D1, (char *)"6A60"); // PUSH 60
+            cracking_write_hex(0x005455D3, (char *)"6828A75500"); // PUSH CoD2MP_s.005596F8
+            cracking_write_hex(0x005455D8, (char *)"E847290000"); // CALL CoD2MP_s.00547A24
+            cracking_write_hex(0x005455DD, (char *)"BF94000000"); // MOV EDI,94
+            cracking_write_hex(0x005455E2, (char *)"8BC7"); // MOV EAX,EDI
+            cracking_write_hex(0x005455E4, (char *)"E857740000"); // CALL CoD2MP_s.0054C540
+            cracking_write_hex(0x005455E9, (char *)"8965E8"); // MOV DWORD PTR SS:[EBP-18],ESP
+            cracking_write_hex(0x005455EC, (char *)"8BF4"); // MOV ESI,ESP
+            cracking_write_hex(0x005455EE, (char *)"893E"); // MOV DWORD PTR DS:[ESI],EDI
+            cracking_write_hex(0x005455F0, (char *)"56"); // PUSH ESI
+            cracking_write_hex(0x005455F1, (char *)"FF1558A15500"); // CALL DWORD PTR DS:[<&KERNEL32.GetVersion>; KERNEL32.GetVersionExA
+            cracking_write_hex(0x005455F7, (char *)"8B4E10"); // MOV ECX,DWORD PTR DS:[ESI+10]
+            asm("jmp *%0"::"r"(0x005455D1):);
         #elif COD_VERSION == COD2_1_3
             cracking_write_hex(0x0057DB54, (char *)"6A60"); // PUSH 60
             cracking_write_hex(0x0057DB56, (char *)"68D8925900"); // PUSH original.005992D8
@@ -202,6 +216,8 @@ int restore_entry_function() {
             #if MODE == 1
                 #if COD_VERSION == COD2_1_0
                     cracking_hook_function(0x005450DB, (int)restore_start_function_and_jump_to_it);
+                #elif COD_VERSION == COD2_1_0_1
+                    cracking_hook_function(0x005455DB, (int)restore_start_function_and_jump_to_it);
                 #elif COD_VERSION == COD2_1_3
                     cracking_hook_function(0x0057db5e, (int)restore_start_function_and_jump_to_it);
                 #endif

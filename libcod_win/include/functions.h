@@ -6,6 +6,8 @@ typedef int (*Com_Printf_t)(const char*, ...);
 
 #if COD_VERSION == COD2_1_0
     static Com_Printf_t Com_Printf = (Com_Printf_t)0x0430540;
+#elif COD_VERSION == COD2_1_0_1
+    static Com_Printf_t Com_Printf = (Com_Printf_t)0x0430890;
 #elif COD_VERSION == COD2_1_3
     static Com_Printf_t Com_Printf = (Com_Printf_t)0x0431EE0;
 #else
@@ -17,6 +19,8 @@ typedef int (*Cmd_ExecuteString_t)(const char *text);
 
 #if COD_VERSION == COD2_1_0
     static Cmd_ExecuteString_t Cmd_ExecuteString = (Cmd_ExecuteString_t)0x041FD10;
+#elif COD_VERSION == COD2_1_0_1
+    static Cmd_ExecuteString_t Cmd_ExecuteString = (Cmd_ExecuteString_t)0x041FFA0;
 #elif COD_VERSION == COD2_1_3
     static Cmd_ExecuteString_t Cmd_ExecuteString = (Cmd_ExecuteString_t)0x04214C0;
 #else
@@ -38,6 +42,8 @@ static char * Cmd_Argv(int arg)
 {
     #if COD_VERSION == COD2_1_0
         return (char*)*(int*)(0x0A6C480 + arg * 4);
+    #elif COD_VERSION == COD2_1_0_1
+        return (char*)*(int*)(0x0A6D480 + arg * 4);
     #elif COD_VERSION == COD2_1_3
         return (char*)*(int*)(0x0B17A80 + arg * 4);
     #else

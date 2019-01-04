@@ -8,11 +8,12 @@
 
 #define COD1_1_5 115
 #define COD2_1_0 210
+#define COD2_1_0_1 2101
 #define COD2_1_2 212
 #define COD2_1_3 213
 #define COD4_1_7 417
 
-#if COD_VERSION == COD2_1_0 || COD_VERSION == COD2_1_2 || COD_VERSION == COD2_1_3
+#if COD_VERSION == COD2_1_0 || COD_VERSION == COD2_1_0_1 || COD_VERSION == COD2_1_2 || COD_VERSION == COD2_1_3
 	#define STACK_UNDEFINED 0
 	#define STACK_OBJECT 1
 	#define STACK_STRING 2
